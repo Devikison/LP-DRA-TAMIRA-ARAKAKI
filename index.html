@@ -128,6 +128,14 @@ img{display:block;max-width:100%}
 .link-row.disabled{opacity:.55;pointer-events:none;box-shadow:none}
 .link-row-icon{flex:none;width:32px;height:32px;padding:8px;box-sizing:border-box;color:var(--ink);background:var(--accent);border-radius:999px}
 
+.google-card{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;position:relative}
+.google-card-link{position:absolute;inset:0;z-index:2}
+.google-map-preview{position:relative;width:100%;height:150px;background:var(--line)}
+.google-map-preview iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
+.google-badge{position:absolute;top:10px;left:10px;width:34px;height:34px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.28)}
+.google-badge svg{width:20px;height:20px}
+.google-card-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px}
+
 header.site{position:sticky;top:0;z-index:30;background:rgba(255,246,234,.4);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(27,50,61,.1);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 24px -18px rgba(27,50,61,.3)}
 header.site .col{padding:14px var(--pad);max-width:1120px}
 .header-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
@@ -175,7 +183,7 @@ nav.main a.contact:hover{filter:brightness(1.05);transform:translateY(-1px)}
 
 footer.site p{margin:0;font-size:12.5px;font-weight:400;line-height:1.7;color:var(--muted-2)}
 footer.site .footer-mark{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}
-footer.site .mark{display:block;font-family:'Brown Sugar',serif;font-weight:400;font-size:32px;line-height:1;color:var(--cream)}
+footer.site .mark{display:block;font-family:'Brown Sugar',serif;font-weight:400;font-size:32px;line-height:1;color:var(--gold)}
 footer.site .mark-sub{display:block;margin-top:6px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
 footer.site .col{text-align:center}
 </style>
@@ -385,15 +393,24 @@ Como posso ajudar
 <span class="link-label"><span>Google Maps</span><span>Como chegar ao consultório</span></span>
 <svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
 </a>
-<a href="https://www.google.com/search?q=Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba&kgmid=/g/11zfhvp_m1" target="_blank" rel="noopener" class="link-row">
-<span class="link-label"><span>Google</span><span>Perfil da empresa</span></span>
-<svg class="link-row-icon" viewBox="0 0 18 18" style="background:#fff;padding:7px">
+<div class="link-row google-card">
+<a href="https://www.google.com/search?q=Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba&kgmid=/g/11zfhvp_m1" target="_blank" rel="noopener" class="google-card-link" aria-label="Ver perfil da Dra. Tamira no Google"></a>
+<div class="google-map-preview">
+<iframe src="https://www.google.com/maps?q=Av.+Rudolf+Dafferner,+400,+Sorocaba,+SP&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa do consultório"></iframe>
+<span class="google-badge">
+<svg viewBox="0 0 18 18">
 <path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
 <path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
 <path fill="#FBBC05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
 <path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.581C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
 </svg>
-</a>
+</span>
+</div>
+<div class="google-card-footer">
+<span class="link-label"><span>Google</span><span>Perfil da empresa</span></span>
+<svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+</div>
+</div>
 </div>
 </div>
 </section>
