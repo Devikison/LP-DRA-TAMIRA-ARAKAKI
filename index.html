@@ -117,24 +117,36 @@ img{display:block;max-width:100%}
 .link-row.disabled{opacity:.55;pointer-events:none;box-shadow:none}
 .link-row-icon{flex:none;width:32px;height:32px;padding:8px;box-sizing:border-box;color:var(--ink);background:var(--accent);border-radius:999px}
 
-header.site{position:sticky;top:0;z-index:30;background:rgba(255,246,234,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(27,50,61,.1);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 10px 24px -18px rgba(27,50,61,.35)}
+header.site{position:sticky;top:0;z-index:30;background:rgba(255,246,234,.4);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(27,50,61,.1);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 24px -18px rgba(27,50,61,.3)}
 header.site .col{padding:14px var(--pad);max-width:1120px}
 .header-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:12px}
 .brand{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
 .brand .b-first{font-family:'Brown Sugar',serif;font-weight:400;font-size:28px;line-height:1;color:var(--gold-dim)}
 .brand .b-last{font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink);margin-top:2px}
-nav.main{display:flex;align-items:center;gap:clamp(14px,3vw,28px);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-nav.main a{color:rgba(27,50,61,.68);transition:color .2s}
-nav.main a:hover{color:var(--gold-dim)}
-nav.main a.contact{color:var(--gold-dim);border-bottom:1px solid var(--gold-dim);padding-bottom:2px}
+nav.main{display:flex;align-items:center;gap:clamp(6px,1.2vw,10px);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+nav.main a{color:rgba(27,50,61,.72);transition:color .2s,background .2s,box-shadow .2s,transform .2s;padding:11px 18px;border-radius:999px;background:rgba(27,50,61,.05);box-shadow:0 1px 0 rgba(255,255,255,.5) inset}
+nav.main a:hover{color:var(--ink);background:rgba(215,180,102,.18);transform:translateY(-1px)}
+nav.main a.contact{color:var(--ink);background:linear-gradient(180deg,#E4C783 0%,var(--gold) 55%,#C9A25E 100%);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 14px -8px rgba(27,50,61,.4)}
+nav.main a.contact:hover{filter:brightness(1.05);transform:translateY(-1px)}
 
 .nav-toggle-input{display:none}
-.nav-toggle-btn{display:none;position:absolute;right:0;top:2px;width:38px;height:38px;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
-.nav-toggle-btn svg{width:22px;height:22px}
+.nav-toggle-btn{display:none;position:absolute;right:0;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:999px;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);background:linear-gradient(180deg,#E4C783 0%,var(--gold) 55%,#C9A25E 100%);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 8px 18px -8px rgba(27,50,61,.5);transition:transform .2s,box-shadow .2s}
+.nav-toggle-btn:active{transform:translateY(-50%) scale(.94)}
+.nav-toggle-btn svg{width:24px;height:24px}
+.nav-toggle-btn .icon-close{display:none}
+.nav-backdrop{display:none}
+
 @media (max-width:767px){
   .nav-toggle-btn{display:flex}
-  nav.main{display:none;flex-direction:column;align-items:center;gap:16px;width:100%;padding-top:16px;margin-top:2px;border-top:1px solid var(--line)}
+  nav.main{display:none;position:fixed;top:calc(env(safe-area-inset-top,0px) + 78px);left:16px;right:16px;flex-direction:column;align-items:stretch;gap:4px;background:rgba(255,246,234,.98);backdrop-filter:blur(16px);border:1px solid rgba(27,50,61,.1);border-radius:20px;padding:10px;box-shadow:0 24px 48px -20px rgba(27,50,61,.4);z-index:40}
+  nav.main a{padding:14px 16px;border-radius:12px;text-align:center;transition:background .2s,color .2s}
+  nav.main a:hover,nav.main a:active{background:rgba(215,180,102,.12)}
+  nav.main a.contact{border-bottom:none;background:rgba(215,180,102,.14)}
   .nav-toggle-input:checked ~ nav.main{display:flex}
+  .nav-toggle-input:checked ~ .nav-toggle-btn .icon-menu{display:none}
+  .nav-toggle-input:checked ~ .nav-toggle-btn .icon-close{display:block}
+  .nav-backdrop{display:none;position:fixed;inset:0;z-index:35;background:rgba(15,25,30,.25);backdrop-filter:blur(2px)}
+  .nav-toggle-input:checked ~ .nav-backdrop{display:block}
 }
 
 .hero-name{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:0;line-height:1;font-weight:400}
@@ -162,8 +174,10 @@ footer.site .col{text-align:center}
 </a>
 <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
 <label for="nav-toggle" class="nav-toggle-btn" aria-label="Abrir menu">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+<svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+<svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6 6 18"/></svg>
 </label>
+<label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
 <nav class="main">
 <a href="#sobre">Sobre</a>
 <a href="#atuacao">Atuação</a>
@@ -172,6 +186,7 @@ footer.site .col{text-align:center}
 </nav>
 </div>
 </header>
+<script>document.querySelectorAll('nav.main a').forEach(function(a){a.addEventListener('click',function(){var cb=document.getElementById('nav-toggle');if(cb)cb.checked=false})})</script>
 
 <section id="topo" class="section theme-light" style="padding-top:clamp(18px,3vw,32px);padding-bottom:clamp(32px,5vw,56px)">
 <div class="wrap pair" style="align-items:start">
@@ -274,9 +289,9 @@ Como posso ajudar
 
 <section id="atendimento" class="section theme-dark">
 <div class="wrap pair">
-<div class="pair-text" style="text-align:left">
-<p class="eyebrow">Atendimento</p>
-<h2 class="heading" style="margin-top:14px">Informações para seu atendimento.</h2>
+<div class="pair-text center-on-mobile" style="text-align:center">
+<p class="eyebrow center center-on-mobile">Atendimento</p>
+<h2 class="heading center center-on-mobile" style="margin-top:14px">Informações para seu atendimento.</h2>
 
 <div class="info-list" style="margin-top:clamp(26px,4vw,36px)">
 
@@ -345,6 +360,10 @@ Como posso ajudar
 </a>
 <a href="https://www.linkedin.com/in/tamiraarakaki" target="_blank" rel="noopener" class="link-row">
 <span class="link-label"><span>LinkedIn</span><span>tamiraarakaki</span></span>
+<svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
+</a>
+<a href="https://www.google.com/maps/place/Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba/data=!4m2!3m1!1s0x0:0xda5c05a573632b4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener" class="link-row">
+<span class="link-label"><span>Google Maps</span><span>Como chegar ao consultório</span></span>
 <svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 17 17 7M9 7h8v8"/></svg>
 </a>
 <sc-if value="{{ mostrarGoogleReservado }}" hint-placeholder-val="{{ true }}">
