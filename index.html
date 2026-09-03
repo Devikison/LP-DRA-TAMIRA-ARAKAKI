@@ -103,21 +103,20 @@ img{display:block;max-width:100%}
 .scope-notice{margin:26px 0 0;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;font-size:12.5px;font-weight:600;letter-spacing:.03em;color:var(--accent)}
 
 .atuacao-carousel{display:flex;align-items:stretch;gap:16px}
-.atuacao-track{flex:1;min-width:0;height:clamp(250px,40vw,300px);overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;border-radius:22px;cursor:grab}
-.atuacao-track:active{cursor:grabbing}
+.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(250px,40vw,300px);overflow-y:auto;overscroll-behavior-y:contain;scroll-snap-type:y proximity;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;border-radius:22px}
 .atuacao-track::-webkit-scrollbar{display:none}
-.atuacao-card{scroll-snap-align:start;scroll-snap-stop:always;height:clamp(250px,40vw,300px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:30px clamp(24px,4vw,44px);background:var(--card-bg);border:1px solid var(--card-border);border-left:4px solid var(--gold);box-shadow:var(--card-shadow);opacity:.4;transform:scale(.95);transition:opacity .35s ease,transform .35s ease}
+.atuacao-card{scroll-snap-align:start;scroll-snap-stop:always;height:clamp(250px,40vw,300px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:30px clamp(24px,4vw,44px);background:var(--card-bg);border:1px solid var(--card-border);border-left:4px solid var(--gold);box-shadow:var(--card-shadow);opacity:1;transform:scale(1);transition:opacity .35s ease,transform .35s ease}
 .atuacao-card+.atuacao-card{margin-top:14px}
 .atuacao-card:first-child{border-top-left-radius:22px;border-top-right-radius:22px}
 .atuacao-card:last-child{border-bottom-left-radius:22px;border-bottom-right-radius:22px}
-.atuacao-card.is-active{opacity:1;transform:scale(1)}
+.atuacao-card.is-dimmed{opacity:.45;transform:scale(.96)}
 .atuacao-ghost-num{position:absolute;top:-.12em;right:16px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:900;font-size:clamp(64px,9vw,96px);line-height:1;color:var(--gold);opacity:.13;pointer-events:none;user-select:none}
 .atuacao-eyebrow-chip{display:inline-flex;align-items:center;gap:8px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;position:relative;z-index:1}
 .atuacao-eyebrow-chip::before{content:"";width:20px;height:1.5px;background:var(--accent)}
 .atuacao-card h3{margin:0 0 8px;font-size:19px;font-weight:600;color:var(--fg);position:relative;z-index:1}
 .atuacao-card p{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted-2);position:relative;z-index:1;max-width:40ch}
 .atuacao-dots{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:10px}
-.atuacao-dot{width:6px;height:6px;border-radius:999px;background:var(--line-strong);border:none;padding:0;cursor:pointer;transition:background .25s,height .25s}
+.atuacao-dot{display:block;width:6px;height:6px;border-radius:999px;background:var(--line-strong);border:none;padding:0;cursor:pointer;transition:background .25s,height .25s}
 .atuacao-dot.is-active{background:var(--gold);height:22px}
 .atuacao-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);transition:opacity .4s ease}
 .atuacao-hint svg{width:13px;height:13px;animation:atuacao-bounce 1.6s ease-in-out infinite}
@@ -342,7 +341,18 @@ Como posso ajudar
 <article class="atuacao-card"><span class="atuacao-ghost-num">09</span><span class="atuacao-eyebrow-chip">Etapa 09</span><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></article>
 <article class="atuacao-card"><span class="atuacao-ghost-num">10</span><span class="atuacao-eyebrow-chip">Etapa 10</span><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></article>
 </div>
-<div class="atuacao-dots" id="atuacao-dots"></div>
+<div class="atuacao-dots" id="atuacao-dots">
+<span class="atuacao-dot" data-dot-i="0" role="button" tabindex="0" aria-label="Ir para item 1"></span>
+<span class="atuacao-dot" data-dot-i="1" role="button" tabindex="0" aria-label="Ir para item 2"></span>
+<span class="atuacao-dot" data-dot-i="2" role="button" tabindex="0" aria-label="Ir para item 3"></span>
+<span class="atuacao-dot" data-dot-i="3" role="button" tabindex="0" aria-label="Ir para item 4"></span>
+<span class="atuacao-dot" data-dot-i="4" role="button" tabindex="0" aria-label="Ir para item 5"></span>
+<span class="atuacao-dot" data-dot-i="5" role="button" tabindex="0" aria-label="Ir para item 6"></span>
+<span class="atuacao-dot" data-dot-i="6" role="button" tabindex="0" aria-label="Ir para item 7"></span>
+<span class="atuacao-dot" data-dot-i="7" role="button" tabindex="0" aria-label="Ir para item 8"></span>
+<span class="atuacao-dot" data-dot-i="8" role="button" tabindex="0" aria-label="Ir para item 9"></span>
+<span class="atuacao-dot" data-dot-i="9" role="button" tabindex="0" aria-label="Ir para item 10"></span>
+</div>
 </div>
 <p class="atuacao-hint" id="atuacao-hint" style="max-width:640px;margin-left:auto;margin-right:auto">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
@@ -510,71 +520,50 @@ class Component extends DCLogic {
     var track = document.getElementById("atuacao-track");
     var dotsWrap = document.getElementById("atuacao-dots");
     var hint = document.getElementById("atuacao-hint");
-    if (!track || !dotsWrap) return false;
+    if (!track || !dotsWrap) return;
     var cards = Array.prototype.slice.call(track.querySelectorAll(".atuacao-card"));
-    if (!cards.length || track.__atuacaoBound) return true;
+    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".atuacao-dot"));
+    if (!cards.length || !dots.length || track.__atuacaoBound) return;
     track.__atuacaoBound = true;
 
-    dotsWrap.innerHTML = "";
-    cards.forEach(function(card, i){
-      var dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "atuacao-dot";
-      dot.setAttribute("aria-label", "Ir para item " + (i + 1));
-      dot.addEventListener("click", function(){
-        cards[i].scrollIntoView({ behavior: "smooth", block: "start" });
+    dots.forEach(function(dot, i){
+      var go = function(){ cards[i].scrollIntoView({ behavior: "smooth", block: "start" }); };
+      dot.addEventListener("click", go);
+      dot.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
       });
-      dotsWrap.appendChild(dot);
     });
-    var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".atuacao-dot"));
 
     var setActive = function(index){
-      cards.forEach(function(card, i){ card.classList.toggle("is-active", i === index); });
+      cards.forEach(function(card, i){ card.classList.toggle("is-dimmed", i !== index); });
       dots.forEach(function(dot, i){ dot.classList.toggle("is-active", i === index); });
     };
     setActive(0);
 
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-          setActive(cards.indexOf(entry.target));
-        }
-      });
-    }, { root: track, threshold: [0.6] });
-    cards.forEach(function(card){ observer.observe(card); });
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            setActive(cards.indexOf(entry.target));
+          }
+        });
+      }, { root: track, threshold: [0.6] });
+      cards.forEach(function(card){ observer.observe(card); });
+    }
 
     var dismissHint = function(){
       if (hint) hint.classList.add("is-hidden");
       track.removeEventListener("scroll", dismissHint);
-      track.removeEventListener("pointerdown", dismissHint);
+      track.removeEventListener("touchstart", dismissHint);
     };
     track.addEventListener("scroll", dismissHint, { passive: true });
-    track.addEventListener("pointerdown", dismissHint);
-
-    var isDragging = false, dragStartY = 0, dragStartScroll = 0;
-    track.addEventListener("pointerdown", function(e){
-      if (e.pointerType !== "mouse") return;
-      isDragging = true;
-      dragStartY = e.clientY;
-      dragStartScroll = track.scrollTop;
-      track.setPointerCapture(e.pointerId);
-      e.preventDefault();
-    });
-    track.addEventListener("pointermove", function(e){
-      if (!isDragging || e.pointerType !== "mouse") return;
-      track.scrollTop = dragStartScroll - (e.clientY - dragStartY);
-    });
-    var endDrag = function(){ isDragging = false; };
-    track.addEventListener("pointerup", endDrag);
-    track.addEventListener("pointercancel", endDrag);
-    track.addEventListener("pointerleave", endDrag);
-    return true;
+    track.addEventListener("touchstart", dismissHint, { passive: true });
   }
 
   function initForm(){
     var form = document.getElementById("contact-form");
     var status = document.getElementById("contact-form-status");
-    if (!form || !status || form.__contactBound) return !!form;
+    if (!form || !status || form.__contactBound) return;
     form.__contactBound = true;
     var defaultStatus = status.textContent;
 
@@ -610,16 +599,20 @@ class Component extends DCLogic {
         setTimeout(function(){ status.textContent = defaultStatus; }, 6000);
       });
     });
-    return true;
   }
 
-  var tries = 0;
-  var poll = setInterval(function(){
+  function initAll(){
     initCarousel();
     initForm();
+  }
+
+  initAll();
+  var tries = 0;
+  var poll = setInterval(function(){
+    initAll();
     tries++;
-    if (tries > 40) clearInterval(poll);
-  }, 150);
+    if (tries > 30) clearInterval(poll);
+  }, 200);
 })();
 </script>
 </body>
