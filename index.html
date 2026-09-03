@@ -104,13 +104,11 @@ img{display:block;max-width:100%}
 .scope-notice svg{flex:none;width:17px;height:17px}
 
 .atuacao-carousel{display:flex;align-items:stretch;gap:16px}
-.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(150px,22vw,172px);overflow-y:auto;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;border-radius:18px}
+.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(200px,27vw,224px);padding:clamp(28px,4vw,34px) 0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
 .atuacao-track::-webkit-scrollbar{display:none}
-.atuacao-card{scroll-snap-align:start;scroll-snap-stop:always;height:clamp(150px,22vw,172px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);opacity:1;transform:scale(1);transition:opacity .35s ease,transform .35s ease}
-.atuacao-card+.atuacao-card{margin-top:12px;border-radius:18px}
-.atuacao-card:first-child{border-radius:18px}
-.atuacao-card:last-child{border-radius:18px}
-.atuacao-card.is-dimmed{opacity:.5;transform:scale(.97)}
+.atuacao-card{scroll-snap-align:center;scroll-snap-stop:always;height:clamp(140px,19vw,158px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;opacity:1;filter:blur(0);transform:scale(1);transition:opacity .4s ease,filter .4s ease,transform .4s ease}
+.atuacao-card+.atuacao-card{margin-top:14px}
+.atuacao-card.is-dimmed{opacity:.4;filter:blur(2.5px);transform:scale(.92)}
 .atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
 .atuacao-card-body{min-width:0}
 .atuacao-card h3{margin:0 0 5px;font-size:16.5px;font-weight:600;color:var(--fg);line-height:1.3}
@@ -542,14 +540,6 @@ class Component extends DCLogic {
     if (!cards.length || !dots.length || track.__atuacaoBound) return;
     track.__atuacaoBound = true;
 
-    dots.forEach(function(dot, i){
-      var go = function(){ cards[i].scrollIntoView({ behavior: "smooth", block: "start" }); };
-      dot.addEventListener("click", go);
-      dot.addEventListener("keydown", function(e){
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
-      });
-    });
-
     var currentIndex = 0;
     var setActive = function(index){
       currentIndex = index;
@@ -560,8 +550,17 @@ class Component extends DCLogic {
 
     var goTo = function(index){
       if (index < 0 || index >= cards.length) return;
-      cards[index].scrollIntoView({ behavior: "smooth", block: "start" });
+      setActive(index);
+      cards[index].scrollIntoView({ block: "center", inline: "nearest" });
     };
+
+    dots.forEach(function(dot, i){
+      var go = function(){ goTo(i); };
+      dot.addEventListener("click", go);
+      dot.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); }
+      });
+    });
     var goToLoop = function(index){
       goTo((index + cards.length) % cards.length);
     };
