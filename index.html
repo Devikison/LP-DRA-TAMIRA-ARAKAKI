@@ -104,26 +104,36 @@ img{display:block;max-width:100%}
 .scope-notice svg{flex:none;width:17px;height:17px}
 
 .atuacao-carousel{display:flex;align-items:stretch;gap:16px}
-.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(250px,40vw,300px);overflow-y:auto;overscroll-behavior-y:contain;scroll-snap-type:y proximity;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;border-radius:22px}
+.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(150px,22vw,172px);overflow-y:auto;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;border-radius:18px}
 .atuacao-track::-webkit-scrollbar{display:none}
-.atuacao-card{scroll-snap-align:start;scroll-snap-stop:always;height:clamp(250px,40vw,300px);box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;padding:30px clamp(24px,4vw,44px);background:var(--card-bg);border:1px solid var(--card-border);border-left:4px solid var(--gold);box-shadow:var(--card-shadow);opacity:1;transform:scale(1);transition:opacity .35s ease,transform .35s ease}
-.atuacao-card+.atuacao-card{margin-top:14px}
-.atuacao-card:first-child{border-top-left-radius:22px;border-top-right-radius:22px}
-.atuacao-card:last-child{border-bottom-left-radius:22px;border-bottom-right-radius:22px}
-.atuacao-card.is-dimmed{opacity:.45;transform:scale(.96)}
-.atuacao-ghost-num{position:absolute;top:-.12em;right:16px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:900;font-size:clamp(64px,9vw,96px);line-height:1;color:var(--gold);opacity:.13;pointer-events:none;user-select:none}
-.atuacao-eyebrow-chip{display:inline-flex;align-items:center;gap:8px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;position:relative;z-index:1}
-.atuacao-eyebrow-chip::before{content:"";width:20px;height:1.5px;background:var(--accent)}
-.atuacao-card h3{margin:0 0 8px;font-size:19px;font-weight:600;color:var(--fg);position:relative;z-index:1}
-.atuacao-card p{margin:0;font-size:13.5px;line-height:1.6;color:var(--muted-2);position:relative;z-index:1;max-width:40ch}
+.atuacao-card{scroll-snap-align:start;scroll-snap-stop:always;height:clamp(150px,22vw,172px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);opacity:1;transform:scale(1);transition:opacity .35s ease,transform .35s ease}
+.atuacao-card+.atuacao-card{margin-top:12px;border-radius:18px}
+.atuacao-card:first-child{border-radius:18px}
+.atuacao-card:last-child{border-radius:18px}
+.atuacao-card.is-dimmed{opacity:.5;transform:scale(.97)}
+.atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
+.atuacao-card-body{min-width:0}
+.atuacao-card h3{margin:0 0 5px;font-size:16.5px;font-weight:600;color:var(--fg);line-height:1.3}
+.atuacao-card p{margin:0;font-size:13px;line-height:1.55;color:var(--muted-2)}
+@media (min-width:520px){.atuacao-card p{max-width:42ch}}
 .atuacao-dots{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:10px}
 .atuacao-dot{display:block;width:6px;height:6px;border-radius:999px;background:var(--line-strong);border:none;padding:0;cursor:pointer;transition:background .25s,height .25s}
 .atuacao-dot.is-active{background:var(--gold);height:22px}
+.atuacao-nav-btn{display:none}
+@media (min-width:860px){
+  .atuacao-carousel{gap:20px}
+  .atuacao-dots{width:34px;gap:10px}
+  .atuacao-nav-btn{display:flex;align-items:center;justify-content:center;flex:none;width:30px;height:30px;border-radius:999px;background:var(--card-bg);border:1.5px solid var(--card-border);color:var(--accent);cursor:pointer;transition:background .2s,border-color .2s,transform .2s,opacity .2s}
+  .atuacao-nav-btn svg{width:14px;height:14px}
+  .atuacao-nav-btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .atuacao-nav-prev{margin-bottom:4px}
+  .atuacao-nav-next{margin-top:4px}
+}
 .atuacao-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);transition:opacity .4s ease}
 .atuacao-hint svg{width:13px;height:13px;animation:atuacao-bounce 1.6s ease-in-out infinite}
 .atuacao-hint.is-hidden{opacity:0;pointer-events:none}
 @keyframes atuacao-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@media(min-width:860px){.atuacao-card{padding:34px 48px}}
+@media(min-width:860px){.atuacao-card{padding:0 clamp(28px,3vw,40px)}}
 
 .info-list{display:flex;flex-direction:column;gap:14px}
 .info-row{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:16px;padding:22px 24px;transition:transform .2s,box-shadow .2s}
@@ -331,18 +341,19 @@ Como posso ajudar
 
 <div class="atuacao-carousel" style="margin-top:clamp(30px,5vw,44px);max-width:640px;margin-left:auto;margin-right:auto">
 <div class="atuacao-track" id="atuacao-track">
-<article class="atuacao-card"><span class="atuacao-ghost-num">01</span><span class="atuacao-eyebrow-chip">Etapa 01</span><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">02</span><span class="atuacao-eyebrow-chip">Etapa 02</span><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">03</span><span class="atuacao-eyebrow-chip">Etapa 03</span><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">04</span><span class="atuacao-eyebrow-chip">Etapa 04</span><h3>Perícia cível</h3><p>Avaliação médica em processos com discussão técnica sobre saúde ou capacidade.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">05</span><span class="atuacao-eyebrow-chip">Etapa 05</span><h3>Assistência técnica</h3><p>Atuação técnica junto ao escritório, com acompanhamento da perícia oficial.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">06</span><span class="atuacao-eyebrow-chip">Etapa 06</span><h3>Elaboração de quesitos</h3><p>Formulação de quesitos técnicos orientados à discussão médica do caso.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">07</span><span class="atuacao-eyebrow-chip">Etapa 07</span><h3>Parecer técnico</h3><p>Parecer fundamentado sobre documentação, laudo ou questão médica do processo.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">08</span><span class="atuacao-eyebrow-chip">Etapa 08</span><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">09</span><span class="atuacao-eyebrow-chip">Etapa 09</span><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></article>
-<article class="atuacao-card"><span class="atuacao-ghost-num">10</span><span class="atuacao-eyebrow-chip">Etapa 10</span><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">02</span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">03</span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">04</span><div class="atuacao-card-body"><h3>Perícia cível</h3><p>Avaliação médica em processos com discussão técnica sobre saúde ou capacidade.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">05</span><div class="atuacao-card-body"><h3>Assistência técnica</h3><p>Atuação técnica junto ao escritório, com acompanhamento da perícia oficial.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">06</span><div class="atuacao-card-body"><h3>Elaboração de quesitos</h3><p>Formulação de quesitos técnicos orientados à discussão médica do caso.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">07</span><div class="atuacao-card-body"><h3>Parecer técnico</h3><p>Parecer fundamentado sobre documentação, laudo ou questão médica do processo.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">08</span><div class="atuacao-card-body"><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">09</span><div class="atuacao-card-body"><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
 </div>
 <div class="atuacao-dots" id="atuacao-dots">
+<span class="atuacao-nav-btn atuacao-nav-prev" id="atuacao-nav-prev" role="button" tabindex="0" aria-label="Item anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg></span>
 <span class="atuacao-dot" data-dot-i="0" role="button" tabindex="0" aria-label="Ir para item 1"></span>
 <span class="atuacao-dot" data-dot-i="1" role="button" tabindex="0" aria-label="Ir para item 2"></span>
 <span class="atuacao-dot" data-dot-i="2" role="button" tabindex="0" aria-label="Ir para item 3"></span>
@@ -353,6 +364,7 @@ Como posso ajudar
 <span class="atuacao-dot" data-dot-i="7" role="button" tabindex="0" aria-label="Ir para item 8"></span>
 <span class="atuacao-dot" data-dot-i="8" role="button" tabindex="0" aria-label="Ir para item 9"></span>
 <span class="atuacao-dot" data-dot-i="9" role="button" tabindex="0" aria-label="Ir para item 10"></span>
+<span class="atuacao-nav-btn atuacao-nav-next" id="atuacao-nav-next" role="button" tabindex="0" aria-label="Próximo item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 9 7 7 7-7"/></svg></span>
 </div>
 </div>
 <p class="atuacao-hint" id="atuacao-hint" style="max-width:640px;margin-left:auto;margin-right:auto">
@@ -538,11 +550,30 @@ class Component extends DCLogic {
       });
     });
 
+    var currentIndex = 0;
     var setActive = function(index){
+      currentIndex = index;
       cards.forEach(function(card, i){ card.classList.toggle("is-dimmed", i !== index); });
       dots.forEach(function(dot, i){ dot.classList.toggle("is-active", i === index); });
     };
     setActive(0);
+
+    var goTo = function(index){
+      if (index < 0 || index >= cards.length) return;
+      cards[index].scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    var goToLoop = function(index){
+      goTo((index + cards.length) % cards.length);
+    };
+    var bindNav = function(el, handler){
+      if (!el) return;
+      el.addEventListener("click", handler);
+      el.addEventListener("keydown", function(e){
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handler(); }
+      });
+    };
+    bindNav(document.getElementById("atuacao-nav-prev"), function(){ goToLoop(currentIndex - 1); });
+    bindNav(document.getElementById("atuacao-nav-next"), function(){ goToLoop(currentIndex + 1); });
 
     if ("IntersectionObserver" in window) {
       var observer = new IntersectionObserver(function(entries){
