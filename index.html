@@ -60,9 +60,9 @@ img{display:block;max-width:100%}
 .lede{margin:0;font-size:15px;font-weight:500;line-height:1.65;color:var(--fg)}
 .lede.center{text-align:center}
 
-.quote{margin:0;padding:22px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);font-size:clamp(16px,1.7vw,18.5px);font-weight:400;line-height:1.6;color:var(--fg)}
+.quote{margin:0;padding:22px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);font-size:clamp(16px,1.7vw,18.5px);font-weight:500;line-height:1.6;color:var(--fg)}
 
-.prose{display:flex;flex-direction:column;gap:16px;font-size:14.5px;font-weight:400;line-height:1.75;color:var(--muted)}
+.prose{display:flex;flex-direction:column;gap:16px;font-size:15px;font-weight:500;line-height:1.75;color:var(--muted)}
 .prose p{margin:0}
 
 .pair{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,40px);align-items:center}
@@ -87,7 +87,7 @@ img{display:block;max-width:100%}
 .path:hover{background:rgba(215,180,102,.16);border-color:var(--accent);transform:translateY(-1px)}
 .path:active{transform:translateY(0)}
 .path-text h3{margin:0 0 6px;font-size:15.5px;font-weight:700;color:var(--fg);letter-spacing:.01em}
-.path-text p{margin:0;font-size:13px;font-weight:400;line-height:1.55;color:var(--muted)}
+.path-text p{margin:0;font-size:13.5px;font-weight:500;line-height:1.55;color:var(--muted)}
 .path-arrow{flex:none;width:34px;height:34px;padding:8px;box-sizing:border-box;color:var(--ink);background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);border-radius:999px;box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 3px 6px -1px rgba(120,80,10,.4);filter:drop-shadow(0 1px 0.5px rgba(255,255,255,.3))}
 .path-arrow path{filter:drop-shadow(0 1px 1px rgba(90,60,0,.35))}
 
@@ -96,7 +96,7 @@ img{display:block;max-width:100%}
 .service-row{display:flex;align-items:center;gap:14px}
 .service-num{flex:none;width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(215,180,102,.16);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:15px;letter-spacing:.02em;color:var(--accent)}
 .service h3{margin:0;font-size:15px;font-weight:600;color:var(--fg);line-height:1.35}
-.service p{margin:10px 0 0 50px;font-size:13px;font-weight:400;line-height:1.6;color:var(--muted-2)}
+.service p{margin:10px 0 0 50px;font-size:13.5px;font-weight:500;line-height:1.6;color:var(--muted-2)}
 .service:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 20px 34px -18px rgba(27,50,61,.35),0 4px 10px -2px rgba(27,50,61,.15)}
 @media (min-width:860px){.services{display:block;column-count:2;column-gap:20px}.service{margin-bottom:14px}}
 
@@ -104,15 +104,15 @@ img{display:block;max-width:100%}
 .scope-notice svg{flex:none;width:17px;height:17px}
 
 .atuacao-carousel{display:flex;align-items:stretch;gap:16px}
-.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(200px,27vw,224px);padding:clamp(28px,4vw,34px) 0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(222px,29.5vw,248px);padding:clamp(41px,5.3vw,45px) 0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
 .atuacao-track::-webkit-scrollbar{display:none}
-.atuacao-card{scroll-snap-align:center;scroll-snap-stop:always;height:clamp(140px,19vw,158px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;opacity:1;filter:blur(0);transform:scale(1);transition:opacity .4s ease,filter .4s ease,transform .4s ease}
+.atuacao-card{scroll-snap-align:center;height:clamp(140px,19vw,158px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;opacity:1;filter:blur(0);transform:scale(1);transition:opacity .4s ease,filter .4s ease,transform .4s ease}
 .atuacao-card+.atuacao-card{margin-top:14px}
 .atuacao-card.is-dimmed{opacity:.4;filter:blur(2.5px);transform:scale(.92)}
 .atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
 .atuacao-card-body{min-width:0}
 .atuacao-card h3{margin:0 0 5px;font-size:16.5px;font-weight:600;color:var(--fg);line-height:1.3}
-.atuacao-card p{margin:0;font-size:13px;line-height:1.55;color:var(--muted-2)}
+.atuacao-card p{margin:0;font-size:13.5px;font-weight:500;line-height:1.55;color:var(--muted-2)}
 @media (min-width:520px){.atuacao-card p{max-width:42ch}}
 .atuacao-dots{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:10px}
 .atuacao-dot{display:block;width:6px;height:6px;border-radius:999px;background:var(--line-strong);border:none;padding:0;cursor:pointer;transition:background .25s,height .25s}
@@ -139,7 +139,7 @@ img{display:block;max-width:100%}
 .info-icon{flex:none;width:44px;height:44px;padding:11px;box-sizing:border-box;color:var(--ink);background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);border-radius:999px;box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35)}
 .info-body{display:flex;flex-direction:column;align-items:center}
 .info-body h3{margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.info-body p{margin:0;font-size:14px;font-weight:400;line-height:1.65;color:var(--fg)}
+.info-body p{margin:0;font-size:14.5px;font-weight:500;line-height:1.65;color:var(--fg)}
 @media (min-width:768px){
   .info-row{flex-direction:row;align-items:flex-start;text-align:left;gap:16px}
   .info-icon{margin-top:2px}
@@ -149,7 +149,7 @@ img{display:block;max-width:100%}
 .info-body a:hover{opacity:.7}
 
 .a11y-box{margin-top:2px}
-.a11y-box p{margin:0;font-size:14px;font-weight:400;line-height:1.65;color:var(--fg)}
+.a11y-box p{margin:0;font-size:14.5px;font-weight:500;line-height:1.65;color:var(--fg)}
 .a11y-box p+p{margin-top:6px;color:var(--muted)}
 
 .link-list{display:flex;flex-direction:column;gap:14px}
@@ -157,7 +157,7 @@ img{display:block;max-width:100%}
 .link-row:hover{transform:translateY(-2px)}
 .link-label{display:flex;flex-direction:column;gap:4px}
 .link-label span:first-child{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
-.link-label span:last-child{font-size:15px;font-weight:400;color:var(--fg)}
+.link-label span:last-child{font-size:15px;font-weight:500;color:var(--fg)}
 .link-row.disabled{opacity:.55;pointer-events:none;box-shadow:none}
 .link-row-icon{flex:none;width:32px;height:32px;padding:8px;box-sizing:border-box;color:var(--ink);background:var(--accent);border-radius:999px}
 
@@ -223,7 +223,7 @@ nav.main a.contact:hover{filter:brightness(1.05);transform:translateY(-1px)}
 .hero-name .last{font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:clamp(15px,2vw,22px);letter-spacing:.32em;text-transform:uppercase;margin-top:10px;color:var(--ink)}
 .registry{margin:0;font-size:11.5px;font-weight:500;letter-spacing:.14em;color:var(--muted);border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:9px 0;display:inline-block}
 
-footer.site p{margin:0;font-size:12.5px;font-weight:400;line-height:1.7;color:var(--muted-2)}
+footer.site p{margin:0;font-size:13px;font-weight:500;line-height:1.7;color:var(--muted-2)}
 footer.site .footer-mark{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}
 footer.site .mark{display:block;font-family:'Brown Sugar',serif;font-weight:400;font-size:32px;line-height:1;color:var(--gold)}
 footer.site .mark-sub{display:block;margin-top:6px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
@@ -339,6 +339,7 @@ Como posso ajudar
 
 <div class="atuacao-carousel" style="margin-top:clamp(30px,5vw,44px);max-width:640px;margin-left:auto;margin-right:auto">
 <div class="atuacao-track" id="atuacao-track">
+<article class="atuacao-card atuacao-card-clone" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">02</span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">03</span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article>
@@ -349,6 +350,7 @@ Como posso ajudar
 <article class="atuacao-card"><span class="atuacao-num-badge">08</span><div class="atuacao-card-body"><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">09</span><div class="atuacao-card-body"><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
+<article class="atuacao-card atuacao-card-clone" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
 </div>
 <div class="atuacao-dots" id="atuacao-dots">
 <span class="atuacao-nav-btn atuacao-nav-prev" id="atuacao-nav-prev" role="button" tabindex="0" aria-label="Item anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg></span>
@@ -535,7 +537,10 @@ class Component extends DCLogic {
     var dotsWrap = document.getElementById("atuacao-dots");
     var hint = document.getElementById("atuacao-hint");
     if (!track || !dotsWrap) return;
-    var cards = Array.prototype.slice.call(track.querySelectorAll(".atuacao-card"));
+    var allCards = Array.prototype.slice.call(track.querySelectorAll(".atuacao-card"));
+    var cards = allCards.filter(function(c){ return !c.classList.contains("atuacao-card-clone"); });
+    var leadClone = allCards[0];
+    var trailClone = allCards[allCards.length - 1];
     var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".atuacao-dot"));
     if (!cards.length || !dots.length || track.__atuacaoBound) return;
     track.__atuacaoBound = true;
@@ -547,6 +552,17 @@ class Component extends DCLogic {
       dots.forEach(function(dot, i){ dot.classList.toggle("is-active", i === index); });
     };
     setActive(0);
+
+    var suppressUntil = 0;
+    var jumpInstant = function(el, index){
+      var prevBehavior = track.style.scrollBehavior;
+      track.style.scrollBehavior = "auto";
+      setActive(index);
+      el.scrollIntoView({ block: "center", inline: "nearest" });
+      track.style.scrollBehavior = prevBehavior;
+      suppressUntil = Date.now() + 400;
+    };
+    jumpInstant(cards[0], 0);
 
     var goTo = function(index){
       if (index < 0 || index >= cards.length) return;
@@ -575,14 +591,20 @@ class Component extends DCLogic {
     bindNav(document.getElementById("atuacao-nav-next"), function(){ goToLoop(currentIndex + 1); });
 
     if ("IntersectionObserver" in window) {
+      var firstBatch = true;
       var observer = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
-            setActive(cards.indexOf(entry.target));
-          }
-        });
+        if (firstBatch) { firstBatch = false; return; }
+        if (Date.now() < suppressUntil) return;
+        for (var i = 0; i < entries.length; i++){
+          var entry = entries[i];
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.6) continue;
+          if (entry.target === trailClone) { jumpInstant(cards[0], 0); return; }
+          if (entry.target === leadClone) { jumpInstant(cards[cards.length - 1], cards.length - 1); return; }
+          var idx = cards.indexOf(entry.target);
+          if (idx !== -1) setActive(idx);
+        }
       }, { root: track, threshold: [0.6] });
-      cards.forEach(function(card){ observer.observe(card); });
+      allCards.forEach(function(card){ observer.observe(card); });
     }
 
     var dismissHint = function(){
