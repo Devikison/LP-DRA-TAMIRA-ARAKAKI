@@ -104,9 +104,9 @@ img{display:block;max-width:100%}
 .scope-notice svg{flex:none;width:17px;height:17px}
 
 .atuacao-carousel{display:flex;align-items:stretch;gap:16px}
-.atuacao-track{flex:1;min-width:0;min-height:0;height:clamp(222px,29.5vw,248px);padding:clamp(41px,5.3vw,45px) 0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
+.atuacao-track{flex:1;min-width:0;min-height:120px;padding:clamp(41px,5.3vw,45px) 0;box-sizing:border-box;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scroll-snap-type:y mandatory;scroll-behavior:smooth;touch-action:pan-y;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 clamp(40px,5vw,52px),#000 calc(100% - clamp(40px,5vw,52px)),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 clamp(40px,5vw,52px),#000 calc(100% - clamp(40px,5vw,52px)),transparent 100%)}
 .atuacao-track::-webkit-scrollbar{display:none}
-.atuacao-card{scroll-snap-align:center;height:clamp(140px,19vw,158px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;opacity:1;filter:blur(0);transform:scale(1);transition:opacity .4s ease,filter .4s ease,transform .4s ease}
+.atuacao-card{scroll-snap-align:center;scroll-snap-stop:always;height:clamp(140px,19vw,158px);box-sizing:border-box;display:flex;align-items:center;gap:18px;position:relative;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;opacity:1;filter:blur(0);transform:scale(1);transition:opacity .22s ease,filter .22s ease,transform .22s ease}
 .atuacao-card+.atuacao-card{margin-top:14px}
 .atuacao-card.is-dimmed{opacity:.4;filter:blur(2.5px);transform:scale(.92)}
 .atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
@@ -127,11 +127,16 @@ img{display:block;max-width:100%}
   .atuacao-nav-prev{margin-bottom:4px}
   .atuacao-nav-next{margin-top:4px}
 }
-.atuacao-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);transition:opacity .4s ease}
+.atuacao-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);filter:blur(0);transition:opacity .6s ease,filter .6s ease}
 .atuacao-hint svg{width:13px;height:13px;animation:atuacao-bounce 1.6s ease-in-out infinite}
-.atuacao-hint.is-hidden{opacity:0;pointer-events:none}
+.atuacao-hint.is-hidden{opacity:0;filter:blur(4px);pointer-events:none}
 @keyframes atuacao-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media(min-width:860px){.atuacao-card{padding:0 clamp(28px,3vw,40px)}}
+@media (prefers-reduced-motion: reduce){
+  .atuacao-hint{transition:opacity .4s ease;filter:none!important}
+  .atuacao-hint svg{animation:none}
+  .atuacao-card{transition:none}
+}
 
 .info-list{display:flex;flex-direction:column;gap:14px}
 .info-row{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:16px;padding:22px 24px;transition:transform .2s,box-shadow .2s}
@@ -339,7 +344,7 @@ Como posso ajudar
 
 <div class="atuacao-carousel" style="margin-top:clamp(30px,5vw,44px);max-width:640px;margin-left:auto;margin-right:auto">
 <div class="atuacao-track" id="atuacao-track">
-<article class="atuacao-card atuacao-card-clone" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
+<article class="atuacao-card atuacao-card-clone is-dimmed" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">02</span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">03</span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article>
@@ -350,7 +355,7 @@ Como posso ajudar
 <article class="atuacao-card"><span class="atuacao-num-badge">08</span><div class="atuacao-card-body"><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">09</span><div class="atuacao-card-body"><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></div></article>
 <article class="atuacao-card"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
-<article class="atuacao-card atuacao-card-clone" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
+<article class="atuacao-card atuacao-card-clone is-dimmed" aria-hidden="true" tabindex="-1"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
 </div>
 <div class="atuacao-dots" id="atuacao-dots">
 <span class="atuacao-nav-btn atuacao-nav-prev" id="atuacao-nav-prev" role="button" tabindex="0" aria-label="Item anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 15 7-7 7 7"/></svg></span>
@@ -544,6 +549,20 @@ class Component extends DCLogic {
     var dots = Array.prototype.slice.call(dotsWrap.querySelectorAll(".atuacao-dot"));
     if (!cards.length || !dots.length || track.__atuacaoBound) return;
     track.__atuacaoBound = true;
+
+    function sizeTrack(){
+      var h = cards[0].getBoundingClientRect().height;
+      if (h > 0) track.style.height = Math.round(h * 1.65) + "px";
+    }
+    sizeTrack();
+    var resizeTimer = null;
+    window.addEventListener("resize", function(){
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){
+        sizeTrack();
+        jumpInstant(cards[currentIndex], currentIndex);
+      }, 150);
+    });
 
     var currentIndex = 0;
     var setActive = function(index){
