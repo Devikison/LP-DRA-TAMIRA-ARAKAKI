@@ -553,13 +553,25 @@ class Component extends DCLogic {
     };
     setActive(0);
 
+    var centerOn = function(el, smooth){
+      var trackRect = track.getBoundingClientRect();
+      var elRect = el.getBoundingClientRect();
+      var delta = (elRect.top + elRect.height / 2) - (trackRect.top + trackRect.height / 2);
+      var target = track.scrollTop + delta;
+      if (smooth) {
+        track.scrollTo({ top: target, behavior: "smooth" });
+      } else {
+        var prevBehavior = track.style.scrollBehavior;
+        track.style.scrollBehavior = "auto";
+        track.scrollTop = target;
+        track.style.scrollBehavior = prevBehavior;
+      }
+    };
+
     var suppressUntil = 0;
     var jumpInstant = function(el, index){
-      var prevBehavior = track.style.scrollBehavior;
-      track.style.scrollBehavior = "auto";
       setActive(index);
-      el.scrollIntoView({ block: "center", inline: "nearest" });
-      track.style.scrollBehavior = prevBehavior;
+      centerOn(el, false);
       suppressUntil = Date.now() + 400;
     };
     jumpInstant(cards[0], 0);
@@ -567,7 +579,7 @@ class Component extends DCLogic {
     var goTo = function(index){
       if (index < 0 || index >= cards.length) return;
       setActive(index);
-      cards[index].scrollIntoView({ block: "center", inline: "nearest" });
+      centerOn(cards[index], true);
     };
 
     dots.forEach(function(dot, i){
@@ -590,22 +602,34 @@ class Component extends DCLogic {
     bindNav(document.getElementById("atuacao-nav-prev"), function(){ goToLoop(currentIndex - 1); });
     bindNav(document.getElementById("atuacao-nav-next"), function(){ goToLoop(currentIndex + 1); });
 
-    if ("IntersectionObserver" in window) {
-      var firstBatch = true;
-      var observer = new IntersectionObserver(function(entries){
-        if (firstBatch) { firstBatch = false; return; }
-        if (Date.now() < suppressUntil) return;
-        for (var i = 0; i < entries.length; i++){
-          var entry = entries[i];
-          if (!entry.isIntersecting || entry.intersectionRatio < 0.6) continue;
-          if (entry.target === trailClone) { jumpInstant(cards[0], 0); return; }
-          if (entry.target === leadClone) { jumpInstant(cards[cards.length - 1], cards.length - 1); return; }
-          var idx = cards.indexOf(entry.target);
-          if (idx !== -1) setActive(idx);
-        }
-      }, { root: track, threshold: [0.6] });
-      allCards.forEach(function(card){ observer.observe(card); });
-    }
+    var findClosestCard = function(){
+      var trackRect = track.getBoundingClientRect();
+      var trackCenter = trackRect.top + trackRect.height / 2;
+      var closest = null;
+      var closestDist = Infinity;
+      allCards.forEach(function(card){
+        var r = card.getBoundingClientRect();
+        var dist = Math.abs((r.top + r.height / 2) - trackCenter);
+        if (dist < closestDist) { closestDist = dist; closest = card; }
+      });
+      return closest;
+    };
+
+    var settleTimer = null;
+    var onScrollSettle = function(){
+      if (Date.now() < suppressUntil) return;
+      var closest = findClosestCard();
+      if (!closest) return;
+      if (closest === trailClone) { jumpInstant(cards[0], 0); return; }
+      if (closest === leadClone) { jumpInstant(cards[cards.length - 1], cards.length - 1); return; }
+      var idx = cards.indexOf(closest);
+      if (idx !== -1 && idx !== currentIndex) setActive(idx);
+    };
+    var onScroll = function(){
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(onScrollSettle, 120);
+    };
+    track.addEventListener("scroll", onScroll, { passive: true });
 
     var dismissHint = function(){
       if (hint) hint.classList.add("is-hidden");
