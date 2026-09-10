@@ -115,9 +115,12 @@ img{display:block;max-width:100%}
 .scope-notice svg{flex:none;width:17px;height:17px}
 
 .stackscroll-outer{position:relative}
-.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(90px,14vw,120px) var(--pad) clamp(24px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--cream);z-index:1}
-.atuacao-stack{position:relative;height:clamp(210px,30vh,270px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:18px}
-.stackscroll-item{position:absolute;inset:0;transform:translateY(0);will-change:transform}
+.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(90px,14vw,120px) var(--pad) clamp(24px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
+.atuacao-stack{position:relative;height:clamp(230px,32vh,296px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:18px}
+.stackscroll-stack{position:relative}
+.stackscroll-stack::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:24px;border-radius:14px 14px 0 0;background:var(--card-bg);opacity:.55;z-index:0;transition:opacity .35s ease}
+.stackscroll-stack.is-last::after{opacity:0}
+.stackscroll-item{position:absolute;left:0;right:0;top:0;height:calc(100% - 18px);transform:translateY(0);will-change:transform}
 .stackscroll-item:nth-of-type(1){z-index:1}
 .stackscroll-item:nth-of-type(2){z-index:2}
 .stackscroll-item:nth-of-type(3){z-index:3}
@@ -144,8 +147,9 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion: reduce){
   .stackscroll-outer{height:auto!important}
   .stackscroll-inner{position:static;height:auto;overflow:visible}
-  .atuacao-stack{position:static;height:auto;overflow:visible}
-  .stackscroll-item{position:static;transform:none!important}
+  .stackscroll-stack{position:static;height:auto!important;overflow:visible}
+  .stackscroll-stack::after{display:none}
+  .stackscroll-item{position:static;height:auto!important;transform:none!important}
   .stackscroll-item+.stackscroll-item{margin-top:14px}
   .stack-hint{display:none}
   .stackscroll-cover,.stackscroll-cover-desktop{margin-top:0}
@@ -172,26 +176,22 @@ img{display:block;max-width:100%}
 .a11y-box p+p{margin-top:6px;color:var(--muted)}
 
 .atendimento-grid{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,40px);align-items:center;width:100%}
-.atendimento-stack{position:relative;height:clamp(220px,30vh,290px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:16px}
+.atendimento-stack{height:clamp(258px,32vh,320px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:16px}
 .stackscroll-photo{display:none}
 @media (min-width:860px){
   .atendimento-grid{grid-template-columns:1.15fr 1fr;gap:clamp(40px,6vw,72px)}
-  .stackscroll-photo{display:block}
+  .stackscroll-photo{display:flex;justify-content:center}
 }
-.stackscroll-photo img{width:100%;border-radius:6px;box-shadow:0 24px 48px -24px rgba(0,0,0,.4);aspect-ratio:3/4;object-fit:cover}
+.stackscroll-photo img{width:100%;max-width:290px;border-radius:6px;box-shadow:0 20px 40px -22px rgba(0,0,0,.4);aspect-ratio:3/4;object-fit:cover}
 .atendimento-mobile-photo{padding-bottom:0}
 .atendimento-mobile-photo-frame{max-width:380px;margin:clamp(28px,5vw,40px) auto 0}
 .atendimento-mobile-photo-frame img{width:100%;border-radius:6px;box-shadow:0 24px 48px -24px rgba(0,0,0,.4);aspect-ratio:3/4;object-fit:cover}
 @media (min-width:860px){.atendimento-mobile-photo{display:none}}
 
-.link-list{display:flex;flex-direction:column;gap:14px}
-.link-row{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:16px;padding:20px 22px;transition:transform .2s,box-shadow .2s}
-.link-row:hover{transform:translateY(-2px)}
-.link-label{display:flex;flex-direction:column;gap:4px}
-.link-label span:first-child{font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-2)}
-.link-label span:last-child{font-size:15px;font-weight:500;color:var(--fg)}
-.link-row.disabled{opacity:.55;pointer-events:none;box-shadow:none}
-.link-row-icon{flex:none;width:34px;height:34px;padding:8px;box-sizing:border-box;color:var(--ink);background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);border-radius:999px;box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 3px 6px -1px rgba(120,80,10,.4)}
+.footer-social{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;flex:none;border-radius:999px;color:var(--ink);background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);transition:transform .2s,filter .2s}
+.footer-social a:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.footer-social svg{width:19px;height:19px}
 
 .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,48px);align-items:start}
 @media (min-width:860px){.contact-grid{grid-template-columns:1.15fr 1fr}}
@@ -217,14 +217,6 @@ img{display:block;max-width:100%}
 .contact-form .btn-cta{width:100%;margin-top:6px;grid-column:1/-1}
 .form-note{margin:0;font-size:12px;line-height:1.6;color:var(--muted-2);text-align:center;grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px}
 .form-note svg{width:13px;height:13px;flex:none}
-
-.google-card{flex-direction:column;align-items:stretch;padding:0;overflow:hidden;position:relative}
-.google-card-link{position:absolute;inset:0;z-index:2}
-.google-map-preview{position:relative;width:100%;height:150px;background:var(--line)}
-.google-map-preview iframe{width:100%;height:100%;border:0;display:block;pointer-events:none}
-.google-badge{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:999px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 10px rgba(0,0,0,.28)}
-.google-badge svg{width:20px;height:20px}
-.google-card-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px}
 
 header.site{position:sticky;top:0;z-index:30;background:rgba(255,246,234,.4);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(27,50,61,.1);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 24px -18px rgba(27,50,61,.3)}
 header.site .col{padding:14px var(--pad);max-width:1120px}
@@ -544,42 +536,6 @@ Enviar solicitação
 </div>
 </section>
 
-<section class="section theme-light" style="border-top:1px solid var(--line)">
-<div class="col px">
-<p class="eyebrow center">Canais oficiais</p>
-<h2 class="heading center" style="margin-top:14px">Onde me encontrar</h2>
-
-<div class="link-list" style="margin-top:clamp(28px,5vw,40px)">
-<a href="https://instagram.com/tamira.arakaki" target="_blank" rel="noopener" class="link-row">
-<span class="link-label"><span>Instagram</span><span>@tamira.arakaki</span></span>
-<svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-</a>
-<a href="https://www.linkedin.com/in/tamiraarakaki" target="_blank" rel="noopener" class="link-row">
-<span class="link-label"><span>LinkedIn</span><span>tamiraarakaki</span></span>
-<svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-</a>
-<div class="link-row google-card">
-<a href="https://www.google.com/maps/place/Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba/data=!4m2!3m1!1s0x0:0xda5c05a573632b4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener" class="google-card-link" aria-label="Como chegar ao consultório da Dra. Tamira"></a>
-<div class="google-map-preview">
-<iframe src="https://www.google.com/maps?q=Av.+Rudolf+Dafferner,+400,+Sorocaba,+SP&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa do consultório"></iframe>
-<span class="google-badge">
-<svg viewBox="0 0 18 18">
-<path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
-<path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
-<path fill="#FBBC05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
-<path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.581C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
-</svg>
-</span>
-</div>
-<div class="google-card-footer">
-<span class="link-label"><span>Google Maps</span><span>Como chegar ao consultório</span></span>
-<svg class="link-row-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-</div>
-</div>
-</div>
-</div>
-</section>
-
 <footer class="site theme-dark px" style="padding-top:var(--gap-section);padding-bottom:clamp(34px,6vw,52px)">
 <div class="col">
 <div class="footer-mark">
@@ -587,6 +543,17 @@ Enviar solicitação
 <span class="mark-sub">Terao Arakaki</span>
 </div>
 <p>Dra. Tamira Terao Arakaki<br>Médica Fisiatra · CRM 129.885/SP · RQE 72.940<br>Medicina Física e Reabilitação</p>
+<div class="footer-social">
+<a href="https://instagram.com/tamira.arakaki" target="_blank" rel="noopener" aria-label="Instagram">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+</a>
+<a href="https://www.linkedin.com/in/tamiraarakaki" target="_blank" rel="noopener" aria-label="LinkedIn">
+<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5ZM5.25 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM21 21h-3.38v-6.2c0-1.48-.03-3.38-2.06-3.38-2.07 0-2.39 1.62-2.39 3.28V21H9.8V8.5h3.24v1.7h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.18V21Z"/></svg>
+</a>
+<a href="https://www.google.com/maps/place/Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba/data=!4m2!3m1!1s0x0:0xda5c05a573632b4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener" aria-label="Como chegar (Google Maps)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.75"/></svg>
+</a>
+</div>
 </div>
 </footer>
 
@@ -651,6 +618,7 @@ class Component extends DCLogic {
         item.style.transform = "translateY(" + translate + "%)";
       });
       if (progress > .02) dismissHint();
+      stack.classList.toggle("is-last", progress > .995);
     }
 
     function update(){
