@@ -96,6 +96,12 @@ img{display:block;max-width:100%}
 .path-list{display:flex;flex-direction:column;gap:16px;margin-top:clamp(30px,5vw,44px)}
 .path{display:flex;align-items:center;gap:18px;justify-content:space-between;background:rgba(215,180,102,.1);border:1.5px solid rgba(215,180,102,.55);border-radius:20px;padding:20px 24px;transition:background .2s,border-color .2s,transform .2s,box-shadow .2s;box-shadow:0 2px 0 rgba(215,180,102,.15)}
 .path:hover{background:rgba(215,180,102,.16);border-color:var(--accent);transform:translateY(-1px)}
+@media (min-width:860px){
+  .path-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .path{flex-direction:column;align-items:flex-start;justify-content:space-between;gap:20px;height:100%}
+  .path-text h3{white-space:normal}
+  .path-arrow{align-self:flex-end}
+}
 .path:active{transform:translateY(0)}
 .path-text h3{margin:0 0 6px;font-size:clamp(13.5px,4vw,15.5px);font-weight:700;color:var(--fg);letter-spacing:.01em;white-space:nowrap}
 .path-text p{margin:0;font-size:13.5px;font-weight:500;line-height:1.55;color:var(--muted)}
@@ -111,12 +117,14 @@ img{display:block;max-width:100%}
 .service:hover{transform:translateY(-2px);box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 20px 34px -18px rgba(27,50,61,.35),0 4px 10px -2px rgba(27,50,61,.15)}
 @media (min-width:860px){.services{display:block;column-count:2;column-gap:20px}.service{margin-bottom:14px}}
 
-.scope-notice{display:flex;align-items:center;justify-content:center;gap:10px;max-width:640px;margin:32px auto 0;padding:14px 22px;border-radius:999px;background:rgba(215,180,102,.12);border:1.5px solid rgba(215,180,102,.5);text-align:center;font-size:12.5px;font-weight:700;letter-spacing:.03em;color:var(--accent)}
-.scope-notice svg{flex:none;width:17px;height:17px}
+.scope-notice{display:flex;align-items:center;justify-content:center;gap:8px;max-width:640px;margin:32px auto 0;padding:14px 18px;border-radius:999px;background:rgba(215,180,102,.12);border:1.5px solid rgba(215,180,102,.5);text-align:center;white-space:nowrap;font-size:clamp(10.5px,3vw,12.5px);font-weight:700;letter-spacing:.02em;color:var(--accent)}
+.scope-notice svg{flex:none;width:16px;height:16px}
 
 .stackscroll-outer{position:relative}
 .stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(90px,14vw,120px) var(--pad) clamp(24px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
-.atuacao-stack{position:relative;height:clamp(230px,32vh,296px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:18px}
+.stackscroll-content{max-width:1120px;margin:0 auto;width:100%}
+.atuacao-stack{height:clamp(230px,32vh,296px);margin:clamp(22px,3.6vw,34px) auto 0;max-width:640px;overflow:hidden;border-radius:18px}
+@media (max-width:559px){.atuacao-stack,.atendimento-stack{margin-left:-12px;margin-right:-12px}}
 .stackscroll-stack{position:relative}
 .stackscroll-stack::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:24px;border-radius:14px 14px 0 0;background:var(--card-bg);opacity:.55;z-index:0;transition:opacity .35s ease}
 .stackscroll-stack.is-last::after{opacity:0}
@@ -196,8 +204,8 @@ img{display:block;max-width:100%}
 .contact-grid{display:grid;grid-template-columns:1fr;gap:clamp(32px,5vw,48px);align-items:start}
 @media (min-width:860px){.contact-grid{grid-template-columns:1.15fr 1fr}}
 .contact-map-col{display:none}
-@media (min-width:860px){.contact-map-col{display:block;position:sticky;top:clamp(90px,10vw,120px)}}
-.contact-map-frame{border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--card-border);aspect-ratio:4/5;min-height:320px;background:var(--line)}
+@media (min-width:860px){.contact-map-col{display:flex;justify-content:center;position:sticky;top:clamp(90px,10vw,120px)}}
+.contact-map-frame{width:100%;max-width:320px;border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--card-border);aspect-ratio:1/1;background:var(--line)}
 .contact-map-frame iframe{width:100%;height:100%;border:0;display:block}
 .scope-tag-wrap{margin:0;text-align:center}
 @media (min-width:860px){.scope-tag-wrap{text-align:left}}
@@ -215,7 +223,7 @@ img{display:block;max-width:100%}
 .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted-2)}
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(215,180,102,.2)}
 .contact-form .btn-cta{width:100%;margin-top:6px;grid-column:1/-1}
-.form-note{margin:0;font-size:12px;line-height:1.6;color:var(--muted-2);text-align:center;grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px}
+.form-note{margin:0;font-size:clamp(10px,2.7vw,12px);line-height:1.5;color:var(--muted-2);text-align:center;grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:6px}
 .form-note svg{width:13px;height:13px;flex:none}
 
 header.site{position:sticky;top:0;z-index:30;background:rgba(255,246,234,.4);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(27,50,61,.1);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 24px -18px rgba(27,50,61,.3)}
@@ -318,10 +326,12 @@ Como posso ajudar
 </section>
 
 <section id="contato" class="section theme-dark">
-<div class="col px">
+<div class="wrap">
+<div class="col" style="margin-left:auto;margin-right:auto">
 <p class="eyebrow center">Contato direcionado</p>
 <h2 class="heading center" style="margin-top:14px">Como posso ajudar?</h2>
 <p class="lede center" style="margin-top:14px">Escolha o caminho que mais se aproxima da sua necessidade.</p>
+</div>
 
 <div class="path-list">
 <a href="https://wa.me/5511985024990?text=Ol%C3%A1%2C%20Dra.%20Tamira.%20Sou%20advogado(a)%20e%20gostaria%20de%20falar%20sobre%20assist%C3%AAncia%20t%C3%A9cnica." target="_blank" rel="noopener" class="path">
@@ -373,12 +383,12 @@ Como posso ajudar
 
 <section id="atuacao-outer" class="section stackscroll-outer theme-light" data-lead-vh="40" data-reveal-vh="360" data-hold-vh="90" style="height:590vh;border-top:1px solid var(--line)">
 <div class="stackscroll-inner">
-<div class="wrap" style="width:100%">
+<div class="stackscroll-content">
 <p class="eyebrow center">Atuação</p>
 <h2 class="heading center" style="margin-top:14px;max-width:18em;margin-left:auto;margin-right:auto">Visão técnica para cada etapa do processo.</h2>
 <p class="lede center" style="margin-top:12px">Perícia previdenciária, trabalhista, acidentária e cível.</p>
 
-<div class="atuacao-stack" id="atuacao-stack" style="max-width:640px;margin-left:auto;margin-right:auto">
+<div class="atuacao-stack stackscroll-stack" id="atuacao-stack">
 <div class="stackscroll-item" data-stack-i="0"><article class="atuacao-card"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article></div>
 <div class="stackscroll-item" data-stack-i="1"><article class="atuacao-card"><span class="atuacao-num-badge">02</span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article></div>
 <div class="stackscroll-item" data-stack-i="2"><article class="atuacao-card"><span class="atuacao-num-badge">03</span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article></div>
@@ -412,7 +422,7 @@ Não atendo casos de erro médico.
 
 <section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark" data-lead-vh="35" data-reveal-vh="180" data-hold-vh="80" style="height:395vh">
 <div class="stackscroll-inner">
-<div class="wrap atendimento-grid">
+<div class="stackscroll-content atendimento-grid">
 <div class="atendimento-col">
 <p class="eyebrow center center-on-mobile">Atendimento</p>
 <h2 class="heading center center-on-mobile" style="margin-top:14px">Informações para seu atendimento.</h2>
@@ -598,6 +608,11 @@ class Component extends DCLogic {
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var hintDismissed = false;
     var ticking = false;
+    var steps = items.length - 1;
+    var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    var lastProgress = 0;
+    var settleTimer = null;
+    var snapping = false;
 
     function dismissHint(){
       if (hintDismissed || !hint) return;
@@ -606,7 +621,7 @@ class Component extends DCLogic {
     }
 
     function apply(progress){
-      var steps = items.length - 1;
+      lastProgress = progress;
       items.forEach(function(item, i){
         if (i === 0) return;
         var segStart = (i - 1) / steps;
@@ -621,22 +636,51 @@ class Component extends DCLogic {
       stack.classList.toggle("is-last", progress > .995);
     }
 
+    function metrics(){
+      var vh = window.innerHeight / 100;
+      return { leadPx: leadVh * vh, revealPx: revealVh * vh };
+    }
+
+    function currentProgress(){
+      var m = metrics();
+      if (m.revealPx <= 0) return 0;
+      var rect = outer.getBoundingClientRect();
+      var scrolled = -rect.top - m.leadPx;
+      return Math.max(0, Math.min(1, scrolled / m.revealPx));
+    }
+
     function update(){
       ticking = false;
+      if (snapping) return;
+      apply(currentProgress());
+    }
+
+    function scrollToProgress(p, smooth){
+      var m = metrics();
       var rect = outer.getBoundingClientRect();
-      var vh = window.innerHeight / 100;
-      var leadPx = leadVh * vh;
-      var revealPx = revealVh * vh;
-      if (revealPx <= 0) return;
-      var scrolled = -rect.top - leadPx;
-      var progress = Math.max(0, Math.min(1, scrolled / revealPx));
-      apply(progress);
+      var docTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
+      var outerTop = rect.top + docTop;
+      var target = outerTop + m.leadPx + p * m.revealPx;
+      snapping = true;
+      window.scrollTo({ top: target, left: 0, behavior: smooth ? "smooth" : "auto" });
+      setTimeout(function(){ snapping = false; apply(currentProgress()); }, smooth ? 420 : 0);
+    }
+
+    function scheduleSettle(){
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(function(){
+        var p = currentProgress();
+        if (p > .008 && p < .992) {
+          scrollToProgress(Math.round(p * steps) / steps, true);
+        }
+      }, 160);
     }
 
     function onScroll(){
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(update);
+      scheduleSettle();
     }
 
     if (!reduce) {
@@ -645,6 +689,34 @@ class Component extends DCLogic {
       window.addEventListener("touchmove", onScroll, { passive: true });
       window.addEventListener("resize", onScroll);
       update();
+
+      if (isTouch) {
+        var touchStartY = null;
+        outer.addEventListener("touchstart", function(e){
+          touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        outer.addEventListener("touchmove", function(e){
+          if (touchStartY === null) return;
+          var p = currentProgress();
+          if (p > .008 && p < .992) e.preventDefault();
+        }, { passive: false });
+
+        outer.addEventListener("touchend", function(e){
+          if (touchStartY === null) return;
+          var endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
+          var deltaY = touchStartY - endY;
+          touchStartY = null;
+          var p = currentProgress();
+          if (p <= .008 || p >= .992) return;
+          var idx = Math.round(p * steps);
+          var THRESH = 24;
+          if (Math.abs(deltaY) > THRESH) {
+            idx = deltaY > 0 ? Math.min(idx + 1, steps) : Math.max(idx - 1, 0);
+          }
+          scrollToProgress(idx / steps, true);
+        }, { passive: true });
+      }
     }
   }
 
