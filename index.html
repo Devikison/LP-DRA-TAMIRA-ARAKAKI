@@ -120,7 +120,7 @@ img{display:block;max-width:100%}
 .scope-notice{display:flex;align-items:center;justify-content:center;gap:8px;max-width:min(640px,100%);margin:32px auto 0;padding:14px 18px;border-radius:999px;background:rgba(215,180,102,.12);border:1.5px solid rgba(215,180,102,.5);text-align:center;font-size:clamp(9.5px,2.6vw,12.5px);font-weight:700;letter-spacing:.02em;color:var(--accent)}
 .scope-notice svg{flex:none;width:16px;height:16px}
 
-.stackscroll-outer{position:relative;height:215vh}
+.stackscroll-outer{position:relative;height:201vh}
 .stackscroll-outer.theme-dark,.atendimento-mobile-photo.theme-dark{background:var(--bg)}
 .stackscroll-cover{position:relative;z-index:2;margin-top:-100vh}
 @media (min-width:860px){.stackscroll-cover-desktop{position:relative;z-index:2;margin-top:-100vh}}
@@ -630,10 +630,32 @@ class Component extends DCLogic {
       });
     });
 
+    var awayDir = 0;
+    var awayFromY = 0;
+    var awaySetAt = 0;
+
+    function currentScrollY(){
+      return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    }
+
+    function markAway(dir){
+      awayDir = dir;
+      awayFromY = currentScrollY();
+      awaySetAt = Date.now();
+    }
+
+    function checkReturn(){
+      if (awayDir === 0) return;
+      if (Date.now() - awaySetAt < 50) return;
+      var traveled = (currentScrollY() - awayFromY) * awayDir;
+      if (traveled <= 0) awayDir = 0;
+    }
+    window.addEventListener("scroll", checkReturn, { passive: true });
+
     function isInView(){
+      if (awayDir !== 0) return false;
       var r = outer.getBoundingClientRect();
-      var buffer = window.innerHeight * 0.15;
-      return r.top <= 1 && r.top >= -buffer;
+      return r.top <= 1 && r.bottom >= window.innerHeight + 4;
     }
 
     function pointerOver(clientX, clientY){
@@ -677,12 +699,12 @@ class Component extends DCLogic {
       if (animating) { e.preventDefault(); return; }
       var dir = e.deltaY > 0 ? 1 : -1;
       var canStep = dir > 0 ? (activeIdx < steps) : (activeIdx > 0);
-      if (!canStep) { wheelAccum = 0; return; }
+      if (!canStep) { markAway(dir); wheelAccum = 0; return; }
       e.preventDefault();
       wheelAccum += e.deltaY;
       if (wheelResetTimer) clearTimeout(wheelResetTimer);
       wheelResetTimer = setTimeout(function(){ wheelAccum = 0; }, 260);
-      if (Math.abs(wheelAccum) < 22) return;
+      if (Math.abs(wheelAccum) < 28) return;
       wheelAccum = 0;
       step(dir);
     }
@@ -708,18 +730,19 @@ class Component extends DCLogic {
         var canStep = dir0 > 0 ? (activeIdx < steps) : (activeIdx > 0);
         touchDeciding = false;
         touchOwned = canStep;
-        if (!touchOwned) return;
+        if (!touchOwned) { markAway(dir0); return; }
       }
       if (!touchOwned) return;
 
       e.preventDefault();
-      if (Math.abs(delta) < 28 || animating) return;
+      if (Math.abs(delta) < 38 || animating) return;
       var dir = delta > 0 ? 1 : -1;
       var consumed = step(dir);
       if (consumed) {
         touchY = y;
       } else {
         touchOwned = false;
+        markAway(dir);
         exitBoundary(dir);
       }
     }, { passive: false });
