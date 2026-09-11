@@ -71,8 +71,13 @@ img{display:block;max-width:100%}
 .lede{margin:0;font-size:15px;font-weight:500;line-height:1.65;color:var(--fg)}
 .lede.center{text-align:center}
 
-.hero-statement{margin:0;font-size:clamp(17px,2.4vw,20px);font-weight:600;line-height:1.6;color:var(--fg)}
-@media (min-width:860px){.hero-statement{font-size:clamp(15.5px,1vw,17px);font-weight:500;line-height:1.65}}
+.hero-statement{margin:0;font-size:clamp(11.5px,3vw,13px);font-weight:600;line-height:1.55;color:var(--fg)}
+.hero-statement .br-d{display:none}
+@media (min-width:860px){
+  .hero-statement{font-size:16px;font-weight:500;line-height:1.6}
+  .hero-statement .br-m{display:none}
+  .hero-statement .br-d{display:inline}
+}
 
 .quote{margin:0;padding:22px 0;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);font-size:clamp(16px,1.7vw,18.5px);font-weight:500;line-height:1.6;color:var(--fg)}
 
@@ -85,8 +90,10 @@ img{display:block;max-width:100%}
 .pair-media.portrait img{aspect-ratio:2/3}
 .pair-media.landscape img{aspect-ratio:3/2}
 .pair-text.center{text-align:center}
+.hero-pair{max-width:1280px}
 @media (min-width:860px){
   .pair{grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,72px)}
+  .hero-pair{grid-template-columns:1.25fr 1fr}
   .pair-text.center-on-mobile{text-align:left}
   .eyebrow.center-on-mobile,.heading.center-on-mobile,.lede.center-on-mobile{text-align:left}
 }
@@ -227,7 +234,8 @@ img{display:block;max-width:100%}
 .form-field label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
 .form-field input,.form-field select,.form-field textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 16px;transition:border-color .2s,box-shadow .2s;outline:none}
 .form-field textarea{resize:vertical;line-height:1.5}
-.form-field select{appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23B99648" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');background-repeat:no-repeat;background-position:right 14px center;background-size:16px;padding-right:40px}
+.form-field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23B99648" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');background-repeat:no-repeat;background-position:right 16px center;background-size:14px;padding-right:42px}
+.form-field select::-ms-expand{display:none}
 .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted-2)}
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(215,180,102,.2)}
 .contact-form .btn-cta{width:100%;margin-top:6px;grid-column:1/-1}
@@ -277,7 +285,6 @@ nav.main a.contact:hover{filter:brightness(1.05);transform:translateY(-1px)}
 .hero-name .first{font-family:'Brown Sugar',serif;font-weight:400;font-size:clamp(70px,10.5vw,120px);line-height:.95;color:var(--ink);margin-top:8px;display:block}
 @media (min-width:860px){.hero-name .first{font-size:clamp(105px,9.2vw,170px)}}
 .hero-name .last{font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:clamp(18px,2.6vw,29px);letter-spacing:.32em;text-transform:uppercase;margin-top:12px;color:var(--ink)}
-.registry{margin:0;font-size:12.5px;font-weight:500;letter-spacing:.14em;color:var(--muted);border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);padding:11px 0;display:inline-block}
 
 footer.site p{margin:0;font-size:13px;font-weight:500;line-height:1.7;color:var(--muted-2)}
 footer.site .footer-mark{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}
@@ -312,7 +319,7 @@ footer.site .col{text-align:center}
 <script>document.querySelectorAll('nav.main a').forEach(function(a){a.addEventListener('click',function(){var cb=document.getElementById('nav-toggle');if(cb)cb.checked=false})})</script>
 
 <section id="topo" class="section theme-light" style="padding-top:clamp(18px,3vw,32px);padding-bottom:clamp(32px,5vw,56px)">
-<div class="wrap pair" style="align-items:start">
+<div class="wrap pair hero-pair" style="align-items:start">
 <div class="pair-text" style="text-align:center">
 <p class="eyebrow center">Medicina Física e Reabilitação</p>
 <p class="hero-name" style="margin-top:14px;align-items:center">
@@ -320,12 +327,15 @@ footer.site .col{text-align:center}
 <span class="first">TAMIRA</span>
 <span class="last">Terao Arakaki</span>
 </p>
-<h1 class="hero-statement center" style="margin-top:22px;max-width:32em;margin-left:auto;margin-right:auto">Evidências médicas definitivas, formulação estratégica de quesitos e atuação pericial integral focada em processos trabalhistas, previdenciários, negligência médica e planos de saúde.</h1>
+<h1 class="hero-statement center" style="margin-top:22px;max-width:46em;margin-left:auto;margin-right:auto">Evidências médicas definitivas, formulação<br class="br-m"> estratégica de quesitos<br class="br-d"> e atuação pericial integral<br class="br-m"> focada em processos trabalhistas,<br class="br-d"> previdenciários,<br class="br-m"> negligência médica e planos de saúde.</h1>
 <a href="#contato" class="btn-cta" style="margin-top:28px;padding:20px 38px;font-size:13.5px">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
 Como posso ajudar
 </a>
-<p class="registry" style="margin-top:26px">CRM 129.885/SP · RQE 72.940</p>
+<p class="scope-notice" style="margin-top:26px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/><path d="M8.5 13.5 6 21l6-3 6 3-2.5-7.5"/></svg>
+CRM 129.885/SP · RQE 72.940
+</p>
 </div>
 <div class="pair-media portrait" style="aspect-ratio:3/4;max-height:78vh">
 <img src="assets/tamira-retrato.jpg" alt="Dra. Tamira Terao Arakaki, médica fisiatra e perita, em seu consultório em Sorocaba." style="height:100%;aspect-ratio:auto;object-position:center 12%">
