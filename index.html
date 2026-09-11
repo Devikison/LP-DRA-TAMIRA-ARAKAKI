@@ -631,6 +631,11 @@ class Component extends DCLogic {
       return r.top <= 1 && r.bottom >= window.innerHeight - 1;
     }
 
+    function pointerOver(clientX, clientY){
+      var r = outer.getBoundingClientRect();
+      return clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom;
+    }
+
     function goTo(idx){
       idx = Math.max(0, Math.min(steps, idx));
       if (idx === activeIdx) return;
@@ -650,10 +655,20 @@ class Component extends DCLogic {
       return false;
     }
 
+    function exitBoundary(direction){
+      var vh = window.innerHeight;
+      var r = outer.getBoundingClientRect();
+      var docTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var target = direction > 0
+        ? docTop + r.bottom + 1
+        : docTop + r.top - vh * 0.85;
+      window.scrollTo({ top: Math.max(0, target), left: 0, behavior: "smooth" });
+    }
+
     var wheelAccum = 0;
     var wheelResetTimer = null;
     function onWheel(e){
-      if (!isInView()) return;
+      if (!isInView() || !pointerOver(e.clientX, e.clientY)) return;
       wheelAccum += e.deltaY;
       if (wheelResetTimer) clearTimeout(wheelResetTimer);
       wheelResetTimer = setTimeout(function(){ wheelAccum = 0; }, 260);
@@ -661,36 +676,52 @@ class Component extends DCLogic {
       if (Math.abs(wheelAccum) < 22) { e.preventDefault(); return; }
       var dir = wheelAccum > 0 ? 1 : -1;
       wheelAccum = 0;
+      e.preventDefault();
       var consumed = step(dir);
-      if (consumed) e.preventDefault();
+      if (!consumed) exitBoundary(dir);
     }
     window.addEventListener("wheel", onWheel, { passive: false });
 
     var touchY = null;
-    var touchConsuming = false;
+    var touchDeciding = false;
+    var touchOwned = false;
     outer.addEventListener("touchstart", function(e){
       touchY = e.touches[0].clientY;
-      touchConsuming = isInView();
+      touchDeciding = isInView();
+      touchOwned = false;
     }, { passive: true });
 
     outer.addEventListener("touchmove", function(e){
-      if (touchY === null || !touchConsuming) return;
+      if (touchY === null) return;
       var y = e.touches[0].clientY;
       var delta = touchY - y;
-      if (Math.abs(delta) < 28) { e.preventDefault(); return; }
-      if (animating) { e.preventDefault(); return; }
-      var consumed = step(delta > 0 ? 1 : -1);
+
+      if (touchDeciding) {
+        if (Math.abs(delta) < 6) return;
+        var dir0 = delta > 0 ? 1 : -1;
+        var canStep = dir0 > 0 ? (activeIdx < steps) : (activeIdx > 0);
+        touchDeciding = false;
+        touchOwned = canStep;
+        if (!touchOwned) return;
+      }
+      if (!touchOwned) return;
+
+      e.preventDefault();
+      if (Math.abs(delta) < 28 || animating) return;
+      var dir = delta > 0 ? 1 : -1;
+      var consumed = step(dir);
       if (consumed) {
-        e.preventDefault();
         touchY = y;
       } else {
-        touchConsuming = false;
+        touchOwned = false;
+        exitBoundary(dir);
       }
     }, { passive: false });
 
     outer.addEventListener("touchend", function(){
       touchY = null;
-      touchConsuming = false;
+      touchDeciding = false;
+      touchOwned = false;
     }, { passive: true });
   }
 
