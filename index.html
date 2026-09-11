@@ -120,17 +120,26 @@ img{display:block;max-width:100%}
 .scope-notice{display:flex;align-items:center;justify-content:center;gap:8px;max-width:min(640px,100%);margin:32px auto 0;padding:14px 18px;border-radius:999px;background:rgba(215,180,102,.12);border:1.5px solid rgba(215,180,102,.5);text-align:center;font-size:clamp(9.5px,2.6vw,12.5px);font-weight:700;letter-spacing:.02em;color:var(--accent)}
 .scope-notice svg{flex:none;width:16px;height:16px}
 
-.stackscroll-outer{position:relative;height:201vh}
+.stackscroll-outer{position:relative}
 .stackscroll-outer.theme-dark,.atendimento-mobile-photo.theme-dark{background:var(--bg)}
 .stackscroll-cover{position:relative;z-index:2;margin-top:-100vh}
 @media (min-width:860px){.stackscroll-cover-desktop{position:relative;z-index:2;margin-top:-100vh}}
-.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(90px,14vw,120px) var(--pad) clamp(24px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
+.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(96px,15vw,150px) var(--pad) clamp(20px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
 .stackscroll-content{max-width:1120px;margin:0 auto;width:100%}
-.atuacao-stack{height:clamp(230px,32vh,296px);margin:clamp(22px,3.6vw,34px) auto 0;max-width:640px;overflow:hidden;border-radius:18px}
+.atuacao-stack{position:relative;height:clamp(220px,32vh,290px);margin:clamp(16px,3vh,26px) auto 0;max-width:640px;overflow:hidden;border-radius:14px}
 @media (max-width:559px){.atuacao-stack,.atendimento-stack{margin-left:-12px;margin-right:-12px}}
-.stackscroll-stack{position:relative}
-.stackscroll-item{position:absolute;left:0;right:0;top:0;height:calc(100% - 22px);transform:translateY(0);will-change:transform;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
-.atuacao-card{position:relative;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:18px;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;overflow:hidden}
+.stackscroll-item{position:absolute;inset:0;transform:translateY(0);will-change:transform}
+.stackscroll-item:nth-of-type(1){z-index:1}
+.stackscroll-item:nth-of-type(2){z-index:2}
+.stackscroll-item:nth-of-type(3){z-index:3}
+.stackscroll-item:nth-of-type(4){z-index:4}
+.stackscroll-item:nth-of-type(5){z-index:5}
+.stackscroll-item:nth-of-type(6){z-index:6}
+.stackscroll-item:nth-of-type(7){z-index:7}
+.stackscroll-item:nth-of-type(8){z-index:8}
+.stackscroll-item:nth-of-type(9){z-index:9}
+.stackscroll-item:nth-of-type(10){z-index:10}
+.atuacao-card{position:relative;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:18px;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:14px;overflow:hidden}
 .atuacao-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f3dfa3 0%,var(--gold) 50%,#c9a25e 100%)}
 .atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
 .atuacao-card-body{min-width:0}
@@ -138,15 +147,15 @@ img{display:block;max-width:100%}
 .atuacao-card p{margin:0;font-size:13.5px;font-weight:500;line-height:1.55;color:var(--muted-2)}
 @media (min-width:520px){.atuacao-card p{max-width:42ch}}
 @media(min-width:860px){.atuacao-card{padding:0 clamp(28px,3vw,40px)}}
-.stack-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);filter:blur(0);transition:opacity .6s ease,filter .6s ease}
-.stack-hint svg{width:13px;height:13px;animation:stack-bounce 1.6s ease-in-out infinite}
+.stack-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);filter:blur(0);transition:opacity .6s ease,filter .6s ease}
+.stack-hint svg{width:13px;height:13px;animation:stack-bounce 1.4s ease-in-out infinite}
 .stack-hint.is-hidden{opacity:0;filter:blur(4px);pointer-events:none}
 @keyframes stack-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 @media (prefers-reduced-motion: reduce){
   .stackscroll-outer{height:auto!important}
   .stackscroll-inner{position:static;height:auto;overflow:visible}
-  .stackscroll-stack{position:static;height:auto!important;overflow:visible}
-  .stackscroll-item{position:static;height:auto!important;transform:none!important;transition:none!important}
+  .atuacao-stack,.atendimento-stack{position:static;height:auto!important;overflow:visible}
+  .stackscroll-item{position:static;transform:none!important}
   .stackscroll-item+.stackscroll-item{margin-top:14px}
   .stack-hint{display:none}
   .stackscroll-cover,.stackscroll-cover-desktop{margin-top:0}
@@ -174,7 +183,7 @@ img{display:block;max-width:100%}
 .a11y-box p+p{margin-top:6px;color:var(--muted)}
 
 .atendimento-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,40px);align-items:center;width:100%}
-.atendimento-stack{height:clamp(258px,32vh,320px);margin-top:clamp(22px,3.6vw,34px);overflow:hidden;border-radius:16px}
+.atendimento-stack{position:relative;height:clamp(240px,30vh,300px);margin-top:clamp(16px,3vh,26px);overflow:hidden;border-radius:14px}
 .stackscroll-photo{display:none}
 @media (min-width:860px){
   .atendimento-grid{grid-template-columns:1.15fr 1fr;gap:clamp(40px,6vw,72px)}
@@ -372,7 +381,7 @@ Como posso ajudar
 </div>
 </section>
 
-<section id="atuacao-outer" class="section stackscroll-outer theme-light" style="border-top:1px solid var(--line)">
+<section id="atuacao-outer" class="section stackscroll-outer theme-light" data-lead-vh="40" data-reveal-vh="495" data-hold-vh="105" style="height:740vh;border-top:1px solid var(--line)">
 <div class="stackscroll-inner">
 <div class="stackscroll-content">
 <p class="eyebrow center">Atuação</p>
@@ -411,7 +420,7 @@ Não atendo casos de erro médico.
 </div>
 </section>
 
-<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark">
+<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark" data-lead-vh="35" data-reveal-vh="260" data-hold-vh="105" style="height:500vh">
 <div class="stackscroll-inner">
 <div class="stackscroll-content atendimento-grid">
 <div class="atendimento-col">
@@ -596,13 +605,11 @@ class Component extends DCLogic {
     if (!items.length || outer.__stackBound) return;
     outer.__stackBound = true;
 
+    var leadVh = parseFloat(outer.dataset.leadVh) || 0;
+    var revealVh = parseFloat(outer.dataset.revealVh) || 210;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
-
-    var steps = items.length - 1;
-    var activeIdx = 0;
-    var animating = false;
     var hintDismissed = false;
+    var ticking = false;
 
     function dismissHint(){
       if (hintDismissed || !hint) return;
@@ -610,148 +617,46 @@ class Component extends DCLogic {
       hint.classList.add("is-hidden");
     }
 
-    function render(){
+    function apply(progress){
+      var steps = items.length - 1;
       items.forEach(function(item, i){
-        var z, translate;
-        if (i <= activeIdx) { z = 100 + i; translate = 0; }
-        else { z = 99 - (i - activeIdx); translate = 100; }
-        item.style.zIndex = z;
+        if (i === 0) return;
+        var segStart = (i - 1) / steps;
+        var segEnd = i / steps;
+        var local = (progress - segStart) / (segEnd - segStart);
+        local = Math.max(0, Math.min(1, local));
+        var eased = 1 - Math.pow(1 - local, 3);
+        var translate = (1 - eased) * 100;
         item.style.transform = "translateY(" + translate + "%)";
       });
-      stack.classList.toggle("is-last", activeIdx >= steps);
-      stack.classList.toggle("is-first", activeIdx <= 0);
-      if (activeIdx > 0) dismissHint();
-    }
-    items.forEach(function(item){ item.style.transition = "none"; });
-    render();
-    requestAnimationFrame(function(){
-      requestAnimationFrame(function(){
-        items.forEach(function(item){ item.style.transition = ""; });
-      });
-    });
-
-    var awayDir = 0;
-    var awayFromY = 0;
-    var awaySetAt = 0;
-
-    function currentScrollY(){
-      return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      if (progress > .02) dismissHint();
     }
 
-    function markAway(dir){
-      awayDir = dir;
-      awayFromY = currentScrollY();
-      awaySetAt = Date.now();
+    function update(){
+      ticking = false;
+      var rect = outer.getBoundingClientRect();
+      var vh = window.innerHeight / 100;
+      var leadPx = leadVh * vh;
+      var revealPx = revealVh * vh;
+      if (revealPx <= 0) return;
+      var scrolled = -rect.top - leadPx;
+      var progress = Math.max(0, Math.min(1, scrolled / revealPx));
+      apply(progress);
     }
 
-    function checkReturn(){
-      if (awayDir === 0) return;
-      if (Date.now() - awaySetAt < 50) return;
-      var traveled = (currentScrollY() - awayFromY) * awayDir;
-      if (traveled <= 0) awayDir = 0;
-    }
-    window.addEventListener("scroll", checkReturn, { passive: true });
-
-    function isInView(){
-      if (awayDir !== 0) return false;
-      var r = outer.getBoundingClientRect();
-      return r.top <= 1 && r.bottom >= window.innerHeight + 4;
+    function onScroll(){
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
     }
 
-    function pointerOver(clientX, clientY){
-      var r = outer.getBoundingClientRect();
-      return clientX >= r.left && clientX <= r.right && clientY >= r.top && clientY <= r.bottom;
+    if (!reduce) {
+      window.addEventListener("scroll", onScroll, { passive: true, capture: true });
+      document.body.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("touchmove", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      update();
     }
-
-    function goTo(idx){
-      idx = Math.max(0, Math.min(steps, idx));
-      if (idx === activeIdx) return;
-      activeIdx = idx;
-      animating = true;
-      render();
-      setTimeout(function(){ animating = false; }, 540);
-    }
-
-    function step(direction){
-      if (animating) return true;
-      if (direction > 0) {
-        if (activeIdx < steps) { goTo(activeIdx + 1); return true; }
-        return false;
-      }
-      if (activeIdx > 0) { goTo(activeIdx - 1); return true; }
-      return false;
-    }
-
-    function exitBoundary(direction){
-      var vh = window.innerHeight;
-      var r = outer.getBoundingClientRect();
-      var docTop = window.pageYOffset || document.documentElement.scrollTop || 0;
-      var target = direction > 0
-        ? docTop + r.bottom + 1
-        : docTop + r.top - vh * 0.85;
-      window.scrollTo({ top: Math.max(0, target), left: 0, behavior: "smooth" });
-    }
-
-    var wheelAccum = 0;
-    var wheelResetTimer = null;
-    function onWheel(e){
-      if (!isInView() || !pointerOver(e.clientX, e.clientY)) return;
-      if (animating) { e.preventDefault(); return; }
-      var dir = e.deltaY > 0 ? 1 : -1;
-      var canStep = dir > 0 ? (activeIdx < steps) : (activeIdx > 0);
-      if (!canStep) { markAway(dir); wheelAccum = 0; return; }
-      e.preventDefault();
-      wheelAccum += e.deltaY;
-      if (wheelResetTimer) clearTimeout(wheelResetTimer);
-      wheelResetTimer = setTimeout(function(){ wheelAccum = 0; }, 260);
-      if (Math.abs(wheelAccum) < 28) return;
-      wheelAccum = 0;
-      step(dir);
-    }
-    window.addEventListener("wheel", onWheel, { passive: false });
-
-    var touchY = null;
-    var touchDeciding = false;
-    var touchOwned = false;
-    outer.addEventListener("touchstart", function(e){
-      touchY = e.touches[0].clientY;
-      touchDeciding = isInView();
-      touchOwned = false;
-    }, { passive: true });
-
-    outer.addEventListener("touchmove", function(e){
-      if (touchY === null) return;
-      var y = e.touches[0].clientY;
-      var delta = touchY - y;
-
-      if (touchDeciding) {
-        if (Math.abs(delta) < 6) return;
-        var dir0 = delta > 0 ? 1 : -1;
-        var canStep = dir0 > 0 ? (activeIdx < steps) : (activeIdx > 0);
-        touchDeciding = false;
-        touchOwned = canStep;
-        if (!touchOwned) { markAway(dir0); return; }
-      }
-      if (!touchOwned) return;
-
-      e.preventDefault();
-      if (Math.abs(delta) < 38 || animating) return;
-      var dir = delta > 0 ? 1 : -1;
-      var consumed = step(dir);
-      if (consumed) {
-        touchY = y;
-      } else {
-        touchOwned = false;
-        markAway(dir);
-        exitBoundary(dir);
-      }
-    }, { passive: false });
-
-    outer.addEventListener("touchend", function(){
-      touchY = null;
-      touchDeciding = false;
-      touchOwned = false;
-    }, { passive: true });
   }
 
   function initForm(){
