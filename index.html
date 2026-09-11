@@ -139,8 +139,6 @@ img{display:block;max-width:100%}
 .stack-hint svg{width:13px;height:13px;animation:stack-bounce 1.6s ease-in-out infinite}
 .stack-hint.is-hidden{opacity:0;filter:blur(4px);pointer-events:none}
 @keyframes stack-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-.stackscroll-cover{position:relative;z-index:2;margin-top:-100vh}
-@media (min-width:860px){.stackscroll-cover-desktop{position:relative;z-index:2;margin-top:-100vh}}
 @media (prefers-reduced-motion: reduce){
   .stackscroll-outer{height:auto!important}
   .stackscroll-inner{position:static;height:auto;overflow:visible}
@@ -148,7 +146,6 @@ img{display:block;max-width:100%}
   .stackscroll-item{position:static;height:auto!important;transform:none!important;transition:none!important}
   .stackscroll-item+.stackscroll-item{margin-top:14px}
   .stack-hint{display:none}
-  .stackscroll-cover,.stackscroll-cover-desktop{margin-top:0}
 }
 
 .info-list{display:flex;flex-direction:column;gap:14px}
@@ -404,13 +401,13 @@ Não atendo casos de erro médico.
 </div>
 </section>
 
-<section class="section atendimento-mobile-photo theme-dark stackscroll-cover">
+<section class="section atendimento-mobile-photo theme-dark">
 <div class="wrap atendimento-mobile-photo-frame">
 <img src="assets/tamira-mesa-notebook.jpg" alt="Dra. Tamira Terao Arakaki, perita médica em Sorocaba.">
 </div>
 </section>
 
-<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark">
+<section id="atendimento-outer" class="section stackscroll-outer theme-dark">
 <div class="stackscroll-inner">
 <div class="stackscroll-content atendimento-grid">
 <div class="atendimento-col">
@@ -479,7 +476,7 @@ Role para ver mais
 </div>
 </section>
 
-<section id="deixe-contato" class="section theme-light stackscroll-cover" style="border-top:1px solid var(--line)">
+<section id="deixe-contato" class="section theme-light" style="border-top:1px solid var(--line)">
 <div class="wrap">
 <div class="contact-heading">
 <p class="scope-tag-wrap"><span class="scope-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>Solicitar análise</span></p>
