@@ -42,7 +42,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   --gap-section:clamp(52px,8vw,84px);
 }
 *{box-sizing:border-box;font-synthesis:none}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:Montserrat,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty}
 html{scrollbar-width:thin;scrollbar-color:var(--gold) var(--cream)}
 ::-webkit-scrollbar{width:12px;height:12px}
@@ -52,8 +52,8 @@ html{scrollbar-width:thin;scrollbar-color:var(--gold) var(--cream)}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 
-.theme-light{--bg:var(--cream);--fg:var(--ink);--muted:#3A4D56;--muted-2:#51636B;--line:rgba(27,50,61,.15);--line-strong:rgba(27,50,61,.24);--accent:var(--gold-dim);--card-bg:#FFFFFF;--card-border:rgba(27,50,61,.07);--card-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 14px 28px -18px rgba(27,50,61,.28),0 3px 8px -3px rgba(27,50,61,.1);background:var(--bg);color:var(--fg)}
-.theme-dark{--bg:#16262e;--fg:var(--cream);--muted:#DDE4E6;--muted-2:#C3CDD1;--line:rgba(255,246,234,.15);--line-strong:rgba(255,246,234,.24);--accent:var(--gold);--card-bg:#233942;--card-border:rgba(255,246,234,.09);--card-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 16px 32px -18px rgba(0,0,0,.55),0 3px 10px -3px rgba(0,0,0,.35);background:linear-gradient(175deg,#22404c 0%,#182b34 45%,#0f1c22 100%);color:var(--fg)}
+.theme-light{--bg:var(--cream);--fg:var(--ink);--muted:#3A4D56;--muted-2:#51636B;--line:rgba(27,50,61,.15);--line-strong:rgba(27,50,61,.24);--accent:var(--gold-dim);--card-bg:#FFFFFF;--card-border:rgba(27,50,61,.07);--card-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 10px 20px -15px rgba(27,50,61,.2),0 2px 6px -2px rgba(27,50,61,.07);background:var(--bg);color:var(--fg)}
+.theme-dark{--bg:#16262e;--fg:var(--cream);--muted:#DDE4E6;--muted-2:#C3CDD1;--line:rgba(255,246,234,.15);--line-strong:rgba(255,246,234,.24);--accent:var(--gold);--card-bg:#233942;--card-border:rgba(255,246,234,.09);--card-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 12px 22px -15px rgba(0,0,0,.4),0 2px 8px -2px rgba(0,0,0,.22);background:linear-gradient(175deg,#22404c 0%,#182b34 45%,#0f1c22 100%);color:var(--fg)}
 
 .wrap{max-width:1120px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .col{max-width:640px;margin:0 auto}
@@ -120,25 +120,13 @@ img{display:block;max-width:100%}
 .scope-notice{display:flex;align-items:center;justify-content:center;gap:8px;max-width:640px;margin:32px auto 0;padding:14px 18px;border-radius:999px;background:rgba(215,180,102,.12);border:1.5px solid rgba(215,180,102,.5);text-align:center;white-space:nowrap;font-size:clamp(10.5px,3vw,12.5px);font-weight:700;letter-spacing:.02em;color:var(--accent)}
 .scope-notice svg{flex:none;width:16px;height:16px}
 
-.stackscroll-outer{position:relative}
+.stackscroll-outer{position:relative;height:135vh}
 .stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(90px,14vw,120px) var(--pad) clamp(24px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
 .stackscroll-content{max-width:1120px;margin:0 auto;width:100%}
 .atuacao-stack{height:clamp(230px,32vh,296px);margin:clamp(22px,3.6vw,34px) auto 0;max-width:640px;overflow:hidden;border-radius:18px}
 @media (max-width:559px){.atuacao-stack,.atendimento-stack{margin-left:-12px;margin-right:-12px}}
 .stackscroll-stack{position:relative}
-.stackscroll-stack::after{content:"";position:absolute;left:18px;right:18px;bottom:0;height:24px;border-radius:14px 14px 0 0;background:var(--card-bg);opacity:.55;z-index:0;transition:opacity .35s ease}
-.stackscroll-stack.is-last::after{opacity:0}
-.stackscroll-item{position:absolute;left:0;right:0;top:0;height:calc(100% - 18px);transform:translateY(0);will-change:transform}
-.stackscroll-item:nth-of-type(1){z-index:1}
-.stackscroll-item:nth-of-type(2){z-index:2}
-.stackscroll-item:nth-of-type(3){z-index:3}
-.stackscroll-item:nth-of-type(4){z-index:4}
-.stackscroll-item:nth-of-type(5){z-index:5}
-.stackscroll-item:nth-of-type(6){z-index:6}
-.stackscroll-item:nth-of-type(7){z-index:7}
-.stackscroll-item:nth-of-type(8){z-index:8}
-.stackscroll-item:nth-of-type(9){z-index:9}
-.stackscroll-item:nth-of-type(10){z-index:10}
+.stackscroll-item{position:absolute;left:0;right:0;top:0;height:calc(100% - 22px);transform:translateY(0);will-change:transform;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
 .atuacao-card{position:relative;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:18px;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:18px;overflow:hidden}
 .atuacao-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f3dfa3 0%,var(--gold) 50%,#c9a25e 100%)}
 .atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
@@ -157,8 +145,7 @@ img{display:block;max-width:100%}
   .stackscroll-outer{height:auto!important}
   .stackscroll-inner{position:static;height:auto;overflow:visible}
   .stackscroll-stack{position:static;height:auto!important;overflow:visible}
-  .stackscroll-stack::after{display:none}
-  .stackscroll-item{position:static;height:auto!important;transform:none!important}
+  .stackscroll-item{position:static;height:auto!important;transform:none!important;transition:none!important}
   .stackscroll-item+.stackscroll-item{margin-top:14px}
   .stack-hint{display:none}
   .stackscroll-cover,.stackscroll-cover-desktop{margin-top:0}
@@ -193,9 +180,9 @@ img{display:block;max-width:100%}
   .stackscroll-photo{display:flex;justify-content:center}
 }
 .stackscroll-photo img{width:100%;max-width:290px;border-radius:6px;box-shadow:0 20px 40px -22px rgba(0,0,0,.4);aspect-ratio:3/4;object-fit:cover}
-.atendimento-mobile-photo{padding-bottom:0}
-.atendimento-mobile-photo-frame{max-width:380px;margin:clamp(28px,5vw,40px) auto 0}
-.atendimento-mobile-photo-frame img{width:100%;border-radius:6px;box-shadow:0 24px 48px -24px rgba(0,0,0,.4);aspect-ratio:3/4;object-fit:cover}
+.atendimento-mobile-photo{min-height:100vh;min-height:100dvh;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding-top:clamp(80px,13vw,110px);padding-bottom:clamp(28px,5vw,40px)}
+.atendimento-mobile-photo-frame{max-width:380px;width:100%;margin:0 auto}
+.atendimento-mobile-photo-frame img{width:100%;border-radius:6px;box-shadow:0 20px 40px -22px rgba(0,0,0,.35);aspect-ratio:3/4;object-fit:cover}
 @media (min-width:860px){.atendimento-mobile-photo{display:none}}
 
 .footer-social{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
@@ -384,7 +371,7 @@ Como posso ajudar
 </div>
 </section>
 
-<section id="atuacao-outer" class="section stackscroll-outer theme-light" data-lead-vh="40" data-reveal-vh="360" data-hold-vh="90" style="height:590vh;border-top:1px solid var(--line)">
+<section id="atuacao-outer" class="section stackscroll-outer theme-light" style="border-top:1px solid var(--line)">
 <div class="stackscroll-inner">
 <div class="stackscroll-content">
 <p class="eyebrow center">Atuação</p>
@@ -423,7 +410,7 @@ Não atendo casos de erro médico.
 </div>
 </section>
 
-<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark" data-lead-vh="35" data-reveal-vh="180" data-hold-vh="80" style="height:395vh">
+<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark">
 <div class="stackscroll-inner">
 <div class="stackscroll-content atendimento-grid">
 <div class="atendimento-col">
@@ -608,16 +595,13 @@ class Component extends DCLogic {
     if (!items.length || outer.__stackBound) return;
     outer.__stackBound = true;
 
-    var leadVh = parseFloat(outer.dataset.leadVh) || 0;
-    var revealVh = parseFloat(outer.dataset.revealVh) || 210;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var hintDismissed = false;
-    var ticking = false;
+    if (reduce) return;
+
     var steps = items.length - 1;
-    var isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-    var lastProgress = 0;
-    var settleTimer = null;
-    var snapping = false;
+    var activeIdx = 0;
+    var animating = false;
+    var hintDismissed = false;
 
     function dismissHint(){
       if (hintDismissed || !hint) return;
@@ -625,104 +609,92 @@ class Component extends DCLogic {
       hint.classList.add("is-hidden");
     }
 
-    function apply(progress){
-      lastProgress = progress;
+    function render(){
       items.forEach(function(item, i){
-        if (i === 0) return;
-        var segStart = (i - 1) / steps;
-        var segEnd = i / steps;
-        var local = (progress - segStart) / (segEnd - segStart);
-        local = Math.max(0, Math.min(1, local));
-        var eased = 1 - Math.pow(1 - local, 3);
-        var translate = (1 - eased) * 100;
+        var z, translate;
+        if (i <= activeIdx) { z = 100 + i; translate = 0; }
+        else { z = 99 - (i - activeIdx); translate = 100; }
+        item.style.zIndex = z;
         item.style.transform = "translateY(" + translate + "%)";
       });
-      if (progress > .02) dismissHint();
-      stack.classList.toggle("is-last", progress > .995);
+      stack.classList.toggle("is-last", activeIdx >= steps);
+      stack.classList.toggle("is-first", activeIdx <= 0);
+      if (activeIdx > 0) dismissHint();
+    }
+    items.forEach(function(item){ item.style.transition = "none"; });
+    render();
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        items.forEach(function(item){ item.style.transition = ""; });
+      });
+    });
+
+    function isInView(){
+      var r = outer.getBoundingClientRect();
+      return r.top <= 1 && r.bottom >= window.innerHeight - 1;
     }
 
-    function metrics(){
-      var vh = window.innerHeight / 100;
-      return { leadPx: leadVh * vh, revealPx: revealVh * vh };
+    function goTo(idx){
+      idx = Math.max(0, Math.min(steps, idx));
+      if (idx === activeIdx) return;
+      activeIdx = idx;
+      animating = true;
+      render();
+      setTimeout(function(){ animating = false; }, 540);
     }
 
-    function currentProgress(){
-      var m = metrics();
-      if (m.revealPx <= 0) return 0;
-      var rect = outer.getBoundingClientRect();
-      var scrolled = -rect.top - m.leadPx;
-      return Math.max(0, Math.min(1, scrolled / m.revealPx));
-    }
-
-    function update(){
-      ticking = false;
-      if (snapping) return;
-      apply(currentProgress());
-    }
-
-    function scrollToProgress(p, smooth){
-      var m = metrics();
-      var rect = outer.getBoundingClientRect();
-      var docTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
-      var outerTop = rect.top + docTop;
-      var target = outerTop + m.leadPx + p * m.revealPx;
-      snapping = true;
-      window.scrollTo({ top: target, left: 0, behavior: smooth ? "smooth" : "auto" });
-      setTimeout(function(){ snapping = false; apply(currentProgress()); }, smooth ? 420 : 0);
-    }
-
-    function scheduleSettle(){
-      if (settleTimer) clearTimeout(settleTimer);
-      settleTimer = setTimeout(function(){
-        var p = currentProgress();
-        if (p > .008 && p < .992) {
-          scrollToProgress(Math.round(p * steps) / steps, true);
-        }
-      }, 160);
-    }
-
-    function onScroll(){
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(update);
-      if (isTouch) scheduleSettle();
-    }
-
-    if (!reduce) {
-      window.addEventListener("scroll", onScroll, { passive: true, capture: true });
-      document.body.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("touchmove", onScroll, { passive: true });
-      window.addEventListener("resize", onScroll);
-      update();
-
-      if (isTouch) {
-        var touchStartY = null;
-        outer.addEventListener("touchstart", function(e){
-          touchStartY = e.touches[0].clientY;
-        }, { passive: true });
-
-        outer.addEventListener("touchmove", function(e){
-          if (touchStartY === null) return;
-          var p = currentProgress();
-          if (p > .008 && p < .992) e.preventDefault();
-        }, { passive: false });
-
-        outer.addEventListener("touchend", function(e){
-          if (touchStartY === null) return;
-          var endY = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientY : touchStartY;
-          var deltaY = touchStartY - endY;
-          touchStartY = null;
-          var p = currentProgress();
-          if (p <= .008 || p >= .992) return;
-          var idx = Math.round(p * steps);
-          var THRESH = 24;
-          if (Math.abs(deltaY) > THRESH) {
-            idx = deltaY > 0 ? Math.min(idx + 1, steps) : Math.max(idx - 1, 0);
-          }
-          scrollToProgress(idx / steps, true);
-        }, { passive: true });
+    function step(direction){
+      if (animating) return true;
+      if (direction > 0) {
+        if (activeIdx < steps) { goTo(activeIdx + 1); return true; }
+        return false;
       }
+      if (activeIdx > 0) { goTo(activeIdx - 1); return true; }
+      return false;
     }
+
+    var wheelAccum = 0;
+    var wheelResetTimer = null;
+    function onWheel(e){
+      if (!isInView()) return;
+      wheelAccum += e.deltaY;
+      if (wheelResetTimer) clearTimeout(wheelResetTimer);
+      wheelResetTimer = setTimeout(function(){ wheelAccum = 0; }, 260);
+      if (animating) { e.preventDefault(); return; }
+      if (Math.abs(wheelAccum) < 22) { e.preventDefault(); return; }
+      var dir = wheelAccum > 0 ? 1 : -1;
+      wheelAccum = 0;
+      var consumed = step(dir);
+      if (consumed) e.preventDefault();
+    }
+    window.addEventListener("wheel", onWheel, { passive: false });
+
+    var touchY = null;
+    var touchConsuming = false;
+    outer.addEventListener("touchstart", function(e){
+      touchY = e.touches[0].clientY;
+      touchConsuming = isInView();
+    }, { passive: true });
+
+    outer.addEventListener("touchmove", function(e){
+      if (touchY === null || !touchConsuming) return;
+      var y = e.touches[0].clientY;
+      var delta = touchY - y;
+      if (Math.abs(delta) < 28) { e.preventDefault(); return; }
+      if (animating) { e.preventDefault(); return; }
+      var consumed = step(delta > 0 ? 1 : -1);
+      if (consumed) {
+        e.preventDefault();
+        touchY = y;
+      } else {
+        touchConsuming = false;
+      }
+    }, { passive: false });
+
+    outer.addEventListener("touchend", function(){
+      touchY = null;
+      touchConsuming = false;
+    }, { passive: true });
   }
 
   function initForm(){
