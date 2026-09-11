@@ -83,12 +83,32 @@ img{display:block;max-width:100%}
 
 .prose{display:flex;flex-direction:column;gap:16px;font-size:15px;font-weight:500;line-height:1.75;color:var(--muted)}
 .prose p{margin:0}
+.pair-text .about-registry-pill{margin:18px auto 0}
+.prose strong{font-weight:700;color:var(--fg)}
+@media (min-width:860px){.pair-text .about-registry-pill{margin-left:0;margin-right:auto}}
 
 .pair{display:grid;grid-template-columns:1fr;gap:clamp(28px,5vw,40px);align-items:center}
 .pair-media{width:100%}
 .pair-media img{width:100%;height:100%;object-fit:cover;border-radius:6px;box-shadow:0 24px 48px -24px rgba(0,0,0,.35)}
 .pair-media.portrait img{aspect-ratio:2/3}
 .pair-media.landscape img{aspect-ratio:3/2}
+.pair-media-tagged{position:relative}
+.pair-tag{position:absolute;z-index:2;display:inline-block;white-space:nowrap;padding:9px 14px;border-radius:999px;font-size:12px;font-weight:500;line-height:1;color:var(--ink);background:rgba(255,246,234,.88);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);border:1px solid rgba(215,180,102,.45);box-shadow:0 8px 20px -10px rgba(27,50,61,.45);animation:tag-float 5.6s ease-in-out infinite;will-change:transform}
+.pair-tag b{font-weight:700;color:var(--gold-dim)}
+.pair-tag.g1{left:-5%;top:55%}
+.pair-tag.g2{right:-6%;top:65%;animation-duration:6.6s;animation-delay:-1.9s}
+.pair-tag.g3{left:-7%;top:75%;animation-duration:5.1s;animation-delay:-3.2s}
+.pair-tag.g4{right:-4%;top:85%;animation-duration:7.2s;animation-delay:-.9s}
+.pair-tag.g5{left:-3%;bottom:3%;animation-duration:6.1s;animation-delay:-2.6s}
+@keyframes tag-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media (max-width:859px){
+  .pair-tag{font-size:10.5px;padding:7px 11px}
+  .pair-tag.g1{left:0;top:55%}
+  .pair-tag.g2{right:0;top:65%}
+  .pair-tag.g3{left:0;top:75%}
+  .pair-tag.g4{right:0;top:85%}
+  .pair-tag.g5{left:0;bottom:3%}
+}
 .pair-text.center{text-align:center}
 .hero-pair{max-width:1280px}
 @media (min-width:860px){
@@ -132,14 +152,19 @@ img{display:block;max-width:100%}
 .hero-registry-pill{display:flex;width:max-content;max-width:100%;margin:26px auto 0;padding:8px 16px;font-size:10px;gap:6px}
 .hero-registry-pill svg{width:13px;height:13px}
 
-.stackscroll-outer{position:relative}
+.stackscroll-outer{position:relative;padding-top:0;padding-bottom:0}
 .stackscroll-outer.theme-dark,.atendimento-mobile-photo.theme-dark{background:var(--bg)}
 .stackscroll-cover{position:relative;z-index:2;margin-top:-100vh}
 @media (min-width:860px){.stackscroll-cover-desktop{position:relative;z-index:2;margin-top:-100vh}}
-.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:center;padding:clamp(96px,15vw,150px) var(--pad) clamp(20px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
+.stackscroll-inner{position:sticky;top:0;left:0;width:100%;height:100vh;height:100dvh;display:flex;align-items:flex-start;padding:clamp(90px,12vh,120px) var(--pad) clamp(20px,4vw,40px);box-sizing:border-box;overflow:hidden;background:var(--bg);z-index:1}
 .stackscroll-content{max-width:1120px;margin:0 auto;width:100%}
-.atuacao-stack{position:relative;height:clamp(220px,32vh,290px);margin:clamp(16px,3vh,26px) auto 0;max-width:640px;overflow:hidden;border-radius:14px}
-@media (max-width:559px){.atuacao-stack,.atendimento-stack{margin-left:-12px;margin-right:-12px}}
+.atuacao-viv-inner{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,4vw,44px);align-items:stretch}
+.atuacao-viv-left{align-self:stretch}
+.atuacao-viv-sticky{position:sticky;top:clamp(96px,12vh,120px);display:flex;flex-direction:column;align-items:flex-start}
+.atuacao-viv-cards{display:flex;flex-direction:column;gap:12px}
+.atuacao-viv-cards .atuacao-card{position:sticky;top:clamp(96px,12vh,120px)}
+.atuacao-viv-notice{margin:26px 0 0;max-width:100%}
+@media (max-width:859px){.atuacao-viv-inner{grid-template-columns:1fr}.atuacao-viv-sticky{position:static}}
 .stackscroll-item{position:absolute;inset:0;transform:translateY(0);will-change:transform}
 .stackscroll-item:nth-of-type(1){z-index:1}
 .stackscroll-item:nth-of-type(2){z-index:2}
@@ -151,14 +176,15 @@ img{display:block;max-width:100%}
 .stackscroll-item:nth-of-type(8){z-index:8}
 .stackscroll-item:nth-of-type(9){z-index:9}
 .stackscroll-item:nth-of-type(10){z-index:10}
-.atuacao-card{position:relative;height:100%;box-sizing:border-box;display:flex;align-items:center;gap:18px;padding:0 clamp(20px,3.2vw,30px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:14px;overflow:hidden}
+.atuacao-card{position:relative;box-sizing:border-box;display:flex;align-items:flex-start;gap:16px;padding:clamp(18px,2.6vw,24px) clamp(18px,3vw,28px);background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);border-radius:14px;overflow:hidden}
 .atuacao-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f3dfa3 0%,var(--gold) 50%,#c9a25e 100%)}
-.atuacao-num-badge{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:999px;background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);font-family:'TT Drugs',Montserrat,sans-serif;font-weight:700;font-size:16px;color:var(--ink)}
+.atuacao-ico{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:13px;background:rgba(215,180,102,.12);border:1px solid rgba(215,180,102,.42);color:var(--accent)}
+.atuacao-ico svg{width:21px;height:21px;stroke-width:1.7;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
 .atuacao-card-body{min-width:0}
 .atuacao-card h3{margin:0 0 5px;font-size:16.5px;font-weight:600;color:var(--fg);line-height:1.3}
 .atuacao-card p{margin:0;font-size:13.5px;font-weight:500;line-height:1.55;color:var(--muted-2)}
 @media (min-width:520px){.atuacao-card p{max-width:42ch}}
-@media(min-width:860px){.atuacao-card{padding:0 clamp(28px,3vw,40px)}}
+@media(min-width:860px){.atuacao-card{padding:clamp(20px,2.4vw,26px) clamp(24px,2.6vw,32px)}}
 .stack-hint{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);filter:blur(0);transition:opacity .6s ease,filter .6s ease}
 .stack-hint svg{width:13px;height:13px;animation:stack-bounce 1.4s ease-in-out infinite}
 .stack-hint.is-hidden{opacity:0;filter:blur(4px);pointer-events:none}
@@ -166,10 +192,11 @@ img{display:block;max-width:100%}
 @media (prefers-reduced-motion: reduce){
   .stackscroll-outer{height:auto!important}
   .stackscroll-inner{position:static;height:auto;overflow:visible}
-  .atuacao-stack,.atendimento-stack{position:static;height:auto!important;overflow:visible}
   .stackscroll-item{position:static;transform:none!important}
   .stackscroll-item+.stackscroll-item{margin-top:14px}
   .stack-hint{display:none}
+  .pair-tag{animation:none}
+  .atuacao-viv-cards .atuacao-card,.dif-stack .dif-card{position:relative}
   .stackscroll-cover,.stackscroll-cover-desktop{margin-top:0}
 }
 
@@ -188,19 +215,41 @@ img{display:block;max-width:100%}
 }
 .info-body a{border-bottom:1px solid var(--accent);transition:opacity .2s}
 .info-body a:hover{opacity:.7}
-.atendimento-stack .info-row{height:100%;box-sizing:border-box;justify-content:center}
 
 .a11y-box{margin-top:2px}
 .a11y-box p{margin:0;font-size:14.5px;font-weight:500;line-height:1.65;color:var(--fg)}
 .a11y-box p+p{margin-top:6px;color:var(--muted)}
 
-.atendimento-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(28px,5vw,40px);align-items:center;width:100%}
-.atendimento-stack{position:relative;height:clamp(240px,30vh,300px);margin-top:clamp(16px,3vh,26px);overflow:hidden;border-radius:14px}
-@media (min-width:768px){
-  .atendimento-stack{height:clamp(195px,24vh,235px)}
-  .atendimento-stack .info-row{justify-content:flex-start;align-items:center}
-  .atendimento-stack .info-icon{margin-top:0}
+/* dobra Diferenciais: cards deitados, empilhamento sticky e fade-in no scroll */
+.dif-stack{display:flex;flex-direction:column;gap:16px;margin-top:clamp(30px,4.5vw,44px)}
+.dif-card{position:relative;overflow:hidden;display:grid;grid-template-columns:auto minmax(150px,215px) 1fr;align-items:center;gap:24px;padding:24px 28px;border-radius:16px;background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);transition:transform .2s,border-color .2s,opacity .65s ease}
+/* mesmo efeito da dobra de Atuação: cada card gruda no topo e o seguinte o encobre */
+.dif-stack .dif-card{position:sticky;top:clamp(96px,12vh,120px)}
+.dif-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f3dfa3 0%,var(--gold) 50%,#c9a25e 100%)}
+.dif-card:hover{transform:translateY(-3px);border-color:rgba(215,180,102,.5)}
+.dif-card h3{margin:0;font-size:11.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;line-height:1.45;color:var(--accent)}
+/* fade-in no scroll; sem JS o noscript no fim do body devolve tudo visivel */
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+[data-reveal].is-in{opacity:1;transform:none}
+.dif-card:nth-child(2){transition-delay:80ms}
+.dif-card:nth-child(3){transition-delay:160ms}
+.dif-card:nth-child(4){transition-delay:240ms}
+.dif-card:nth-child(5){transition-delay:320ms}
+@media (max-width:859px){
+  .dif-card{grid-template-columns:1fr;gap:12px;padding:22px 20px}
 }
+@media (prefers-reduced-motion:reduce){[data-reveal]{opacity:1;transform:none;transition:none}}
+.dif-card p{margin:0;font-size:14px;font-weight:500;line-height:1.7;color:var(--muted-2)}
+.dif-card p strong{font-weight:700;color:var(--fg)}
+/* faixa rolante com os topicos da dobra de Atuacao */
+.ticker-band{--band:var(--ink);position:relative;overflow:hidden;background:var(--band);border-top:1px solid rgba(255,246,234,.14);border-bottom:1px solid rgba(255,246,234,.14);padding:15px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.ticker-track{display:flex;width:max-content;animation:ticker-run 42s linear infinite}
+.ticker-group{display:flex;flex:none}
+.ticker-item{display:flex;align-items:center;gap:9px;padding-right:38px;white-space:nowrap;font-family:'TT Drugs',Montserrat,sans-serif;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#F3EBDD}
+.ticker-item svg{flex:none;width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes ticker-run{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.ticker-band:hover .ticker-track{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.ticker-track{animation:none}.ticker-band{overflow-x:auto}}
 .stackscroll-photo{display:none}
 @media (min-width:860px){
   .atendimento-grid{grid-template-columns:1.15fr 1fr;gap:clamp(40px,6vw,72px)}
@@ -212,7 +261,7 @@ img{display:block;max-width:100%}
 .atendimento-mobile-photo-frame img{width:100%;border-radius:6px;box-shadow:0 20px 40px -22px rgba(0,0,0,.35);aspect-ratio:3/4;object-fit:cover}
 @media (min-width:860px){.atendimento-mobile-photo{display:none}}
 
-.footer-social{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:22px}
+.footer-social{display:flex;align-items:center;justify-content:flex-start;gap:14px;margin-top:20px}
 .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;flex:none;border-radius:999px;color:var(--ink);background:linear-gradient(160deg,#f3dfa3 0%,var(--accent) 55%,#c9a34f 100%);box-shadow:inset 0 1.5px 1.5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(120,80,10,.25),0 4px 10px -2px rgba(120,80,10,.35);transition:transform .2s,filter .2s}
 .footer-social a:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .footer-social svg{width:19px;height:19px}
@@ -224,6 +273,31 @@ img{display:block;max-width:100%}
 .contact-map-frame{width:100%;height:100%;min-height:260px;border-radius:20px;overflow:hidden;box-shadow:var(--card-shadow);border:1px solid var(--card-border);aspect-ratio:16/11;background:var(--line)}
 @media (min-width:860px){.contact-map-frame{aspect-ratio:auto}}
 .contact-map-frame iframe{width:100%;height:100%;border:0;display:block}
+/* balaozinho de chat, canto inferior esquerdo */
+.chat-nudge{position:fixed;left:clamp(14px,2.4vw,26px);bottom:clamp(14px,2.4vw,26px);z-index:50;max-width:min(340px,calc(100vw - 28px));opacity:0;visibility:hidden;transform:translateY(10px) scale(.985);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1),visibility .9s}
+.chat-nudge.is-on{opacity:1;visibility:visible;transform:none}
+.chat-nudge-link{display:flex;align-items:flex-end;gap:10px;color:var(--ink)}
+.chat-nudge-av{position:relative;flex:none;width:54px;height:54px;border-radius:999px;background-image:url("assets/tamira-mesa-notebook.jpg");background-size:auto 200%;background-position:50% 10%;border:2px solid var(--gold)}
+.chat-nudge-av::before{content:"";position:absolute;inset:-2px;border-radius:999px;pointer-events:none}
+.chat-nudge-av::after{content:"";position:absolute;right:0;bottom:0;width:13px;height:13px;border-radius:999px;background:#3ec97a;border:2px solid #fff}
+.chat-nudge-box{position:relative;background:#fff;border:1px solid rgba(27,50,61,.1);border-radius:16px 16px 16px 4px;box-shadow:0 16px 36px -16px rgba(27,50,61,.5);padding:13px 32px 13px 15px}
+.chat-nudge-box::before{content:"";position:absolute;left:-7px;bottom:10px;width:12px;height:12px;background:#fff;border-left:1px solid rgba(27,50,61,.1);border-bottom:1px solid rgba(27,50,61,.1);transform:rotate(45deg)}
+.chat-nudge-who{display:block;margin-bottom:4px;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dim)}
+.chat-nudge-msg{display:block;font-size:13px;font-weight:500;line-height:1.5;color:var(--ink)}
+.chat-nudge-x{position:absolute;top:6px;right:6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:999px;background:transparent;color:rgba(27,50,61,.4);font-family:inherit;font-size:15px;line-height:1;cursor:pointer}
+.chat-nudge-x:hover{background:rgba(27,50,61,.08);color:var(--ink)}
+.chat-nudge-typing{display:flex;align-items:center;gap:5px;height:18px;overflow:hidden;transition:height .45s cubic-bezier(.22,.61,.36,1),opacity .3s ease,margin-top .45s cubic-bezier(.22,.61,.36,1)}
+.chat-nudge-typing i{width:7px;height:7px;border-radius:999px;background:rgba(27,50,61,.32);animation:nudge-type 1.25s ease-in-out infinite}
+.chat-nudge-typing i:nth-child(2){animation-delay:.18s}
+.chat-nudge-typing i:nth-child(3){animation-delay:.36s}
+@keyframes nudge-type{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.chat-nudge.is-said .chat-nudge-typing{height:0;opacity:0;margin-top:-2px}
+/* grid-template-rows 0fr->1fr abre a altura sem numero magico */
+.chat-nudge-msgwrap{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .55s cubic-bezier(.22,.61,.36,1),opacity .5s ease .12s}
+.chat-nudge-msgwrap>span{overflow:hidden;min-height:0}
+.chat-nudge.is-said .chat-nudge-msgwrap{grid-template-rows:1fr;opacity:1}
+@media (max-width:479px){.chat-nudge-av{width:46px;height:46px}.chat-nudge-msg{font-size:12.5px}}
+@media (prefers-reduced-motion:reduce){.chat-nudge{transition:none}.chat-nudge-typing i{animation:none}.chat-nudge-msgwrap,.chat-nudge-typing{transition:none}}
 .scope-tag-wrap{margin:0;text-align:center}
 @media (min-width:860px){.scope-tag-wrap{text-align:left}}
 .scope-tag{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:999px;background:rgba(215,180,102,.14);border:1.5px solid rgba(215,180,102,.5);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
@@ -290,10 +364,26 @@ nav.main a.contact:hover{filter:brightness(1.05);transform:translateY(-1px)}
 @media (min-width:860px){.hero-name .last{font-size:clamp(22px,2vw,34px);margin-top:16px}}
 
 footer.site p{margin:0;font-size:13px;font-weight:500;line-height:1.7;color:var(--muted-2)}
-footer.site .footer-mark{margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+footer.site .footer-mark{margin:0 0 16px;padding:0;border:0}
 footer.site .mark{display:block;font-family:'Brown Sugar',serif;font-weight:400;font-size:32px;line-height:1;color:var(--gold)}
 footer.site .mark-sub{display:block;margin-top:6px;font-family:'TT Drugs',Montserrat,sans-serif;font-weight:300;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--muted)}
-footer.site .col{text-align:center}
+footer.site .col{text-align:left;max-width:1120px}
+/* marca a esquerda, informacoes a direita: corta a altura do rodape pela metade */
+.footer-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.6fr);gap:clamp(26px,5vw,58px);align-items:start}
+.footer-brand{display:flex;flex-direction:column;align-items:flex-start}
+.footer-brand p{margin:0}
+.footer-info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);padding-left:clamp(20px,2.8vw,36px);border-left:1px solid var(--line)}
+.footer-info h3{margin:0 0 9px;display:flex;align-items:center;justify-content:flex-start;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.footer-info h3 svg{flex:none;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.footer-info p{margin:0;font-size:13px;font-weight:500;line-height:1.75;color:var(--muted-2)}
+@media (max-width:859px){
+  footer.site .col{text-align:center}
+  .footer-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .footer-brand{align-items:center}
+  .footer-social{justify-content:center}
+  .footer-info{grid-template-columns:minmax(0,1fr);gap:22px;padding-left:0;padding-top:26px;border-left:0;border-top:1px solid var(--line)}
+  .footer-info h3{justify-content:center}
+}
 </style>
 </helmet>
 
@@ -346,6 +436,41 @@ CRM 129.885/SP · RQE 72.940
 </div>
 </section>
 
+<div class="ticker-band" aria-hidden="true">
+<div class="ticker-track">
+<div class="ticker-group"><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.8 6v5.4c0 4.3 3 8.3 7.2 9.6 4.2-1.3 7.2-5.3 7.2-9.6V6L12 3Z"/><path d="m9.2 12.2 2 2 3.6-3.9"/></svg>Perícia previdenciária</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="7.8" width="17.6" height="12" rx="2.4"/><path d="M9 7.8V6.2A1.8 1.8 0 0 1 10.8 4.4h2.4A1.8 1.8 0 0 1 15 6.2v1.6"/><path d="M3.2 12.6h17.6"/></svg>Perícia trabalhista</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4 21 19.6H3L12 4.4Z"/><path d="M12 10.2v3.4"/><circle cx="12" cy="16.6" r="0.1" stroke-width="2.4"/></svg>Perícia acidentária</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4v15.2"/><path d="M6.6 19.6h10.8"/><path d="M4.2 8.4h15.6"/><path d="M4.2 8.4 2.4 13a2.6 2.6 0 0 0 3.6 0L4.2 8.4Z"/><path d="M19.8 8.4 18 13a2.6 2.6 0 0 0 3.6 0L19.8 8.4Z"/></svg>Perícia cível</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.4" cy="8.4" r="3.2"/><path d="M3.6 19.6a5.8 5.8 0 0 1 11.6 0"/><path d="M16.4 5.6a3.2 3.2 0 0 1 0 5.6"/><path d="M17.6 14.4a5.8 5.8 0 0 1 2.8 5.2"/></svg>Assistência técnica</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.8" y="5.2" width="14.4" height="14.4" rx="2.4"/><path d="M9 5.2V4.4a1.8 1.8 0 0 1 1.8-1.8h2.4A1.8 1.8 0 0 1 15 4.4v.8"/><path d="M8.8 10.6h6.4M8.8 14.2h4.4"/></svg>Elaboração de quesitos</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 3.4H7.8A2.4 2.4 0 0 0 5.4 5.8v12.4a2.4 2.4 0 0 0 2.4 2.4h8.4a2.4 2.4 0 0 0 2.4-2.4V8.4l-5.2-5Z"/><path d="M13.2 3.6v5h5"/><path d="M8.8 13.2h6.4M8.8 16.6h4.2"/></svg>Parecer técnico</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m15.4 15.4 4.4 4.4"/></svg>Análise de viabilidade</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 12S6.5 5.9 12 5.9 21.2 12 21.2 12 17.5 18.1 12 18.1 2.8 12 2.8 12Z"/><circle cx="12" cy="12" r="2.7"/></svg>Acompanhamento de perícia oficial</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.2a2.4 2.4 0 0 1-2.4 2.4H8.8L4.4 20.4V6.2a2.4 2.4 0 0 1 2.4-2.4h11.2a2.4 2.4 0 0 1 2.4 2.4v8Z"/><path d="M8.8 8.8h6.4M8.8 12.2h4.2"/></svg>Esclarecimentos em audiência</span></div>
+<div class="ticker-group"><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.8 6v5.4c0 4.3 3 8.3 7.2 9.6 4.2-1.3 7.2-5.3 7.2-9.6V6L12 3Z"/><path d="m9.2 12.2 2 2 3.6-3.9"/></svg>Perícia previdenciária</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="7.8" width="17.6" height="12" rx="2.4"/><path d="M9 7.8V6.2A1.8 1.8 0 0 1 10.8 4.4h2.4A1.8 1.8 0 0 1 15 6.2v1.6"/><path d="M3.2 12.6h17.6"/></svg>Perícia trabalhista</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4 21 19.6H3L12 4.4Z"/><path d="M12 10.2v3.4"/><circle cx="12" cy="16.6" r="0.1" stroke-width="2.4"/></svg>Perícia acidentária</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4v15.2"/><path d="M6.6 19.6h10.8"/><path d="M4.2 8.4h15.6"/><path d="M4.2 8.4 2.4 13a2.6 2.6 0 0 0 3.6 0L4.2 8.4Z"/><path d="M19.8 8.4 18 13a2.6 2.6 0 0 0 3.6 0L19.8 8.4Z"/></svg>Perícia cível</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.4" cy="8.4" r="3.2"/><path d="M3.6 19.6a5.8 5.8 0 0 1 11.6 0"/><path d="M16.4 5.6a3.2 3.2 0 0 1 0 5.6"/><path d="M17.6 14.4a5.8 5.8 0 0 1 2.8 5.2"/></svg>Assistência técnica</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.8" y="5.2" width="14.4" height="14.4" rx="2.4"/><path d="M9 5.2V4.4a1.8 1.8 0 0 1 1.8-1.8h2.4A1.8 1.8 0 0 1 15 4.4v.8"/><path d="M8.8 10.6h6.4M8.8 14.2h4.4"/></svg>Elaboração de quesitos</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 3.4H7.8A2.4 2.4 0 0 0 5.4 5.8v12.4a2.4 2.4 0 0 0 2.4 2.4h8.4a2.4 2.4 0 0 0 2.4-2.4V8.4l-5.2-5Z"/><path d="M13.2 3.6v5h5"/><path d="M8.8 13.2h6.4M8.8 16.6h4.2"/></svg>Parecer técnico</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m15.4 15.4 4.4 4.4"/></svg>Análise de viabilidade</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 12S6.5 5.9 12 5.9 21.2 12 21.2 12 17.5 18.1 12 18.1 2.8 12 2.8 12Z"/><circle cx="12" cy="12" r="2.7"/></svg>Acompanhamento de perícia oficial</span><span class="ticker-item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.2a2.4 2.4 0 0 1-2.4 2.4H8.8L4.4 20.4V6.2a2.4 2.4 0 0 1 2.4-2.4h11.2a2.4 2.4 0 0 1 2.4 2.4v8Z"/><path d="M8.8 8.8h6.4M8.8 12.2h4.2"/></svg>Esclarecimentos em audiência</span></div>
+</div>
+</div>
+
+<section id="atuacao-outer" class="section theme-light" style="border-top:1px solid var(--line);scroll-margin-top:79px">
+<div class="wrap atuacao-viv-inner">
+<div class="atuacao-viv-left">
+<div class="atuacao-viv-sticky">
+<p class="eyebrow">Atuação</p>
+<h2 class="heading" style="margin-top:14px;max-width:15em">Visão técnica para cada etapa do processo.</h2>
+<p class="lede" style="margin-top:12px">Perícia previdenciária, trabalhista, acidentária e cível.</p>
+<p class="scope-notice atuacao-viv-notice">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16" r="0.1" fill="currentColor" stroke-width="2.6"/></svg>
+Não atendo casos de erro médico.
+</p>
+</div>
+</div>
+<div class="atuacao-viv-cards">
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.8 6v5.4c0 4.3 3 8.3 7.2 9.6 4.2-1.3 7.2-5.3 7.2-9.6V6L12 3Z"/><path d="m9.2 12.2 2 2 3.6-3.9"/></svg></span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="7.8" width="17.6" height="12" rx="2.4"/><path d="M9 7.8V6.2A1.8 1.8 0 0 1 10.8 4.4h2.4A1.8 1.8 0 0 1 15 6.2v1.6"/><path d="M3.2 12.6h17.6"/></svg></span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4 21 19.6H3L12 4.4Z"/><path d="M12 10.2v3.4"/><circle cx="12" cy="16.6" r="0.1" stroke-width="2.4"/></svg></span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.4v15.2"/><path d="M6.6 19.6h10.8"/><path d="M4.2 8.4h15.6"/><path d="M4.2 8.4 2.4 13a2.6 2.6 0 0 0 3.6 0L4.2 8.4Z"/><path d="M19.8 8.4 18 13a2.6 2.6 0 0 0 3.6 0L19.8 8.4Z"/></svg></span><div class="atuacao-card-body"><h3>Perícia cível</h3><p>Avaliação médica em processos com discussão técnica sobre saúde ou capacidade.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.4" cy="8.4" r="3.2"/><path d="M3.6 19.6a5.8 5.8 0 0 1 11.6 0"/><path d="M16.4 5.6a3.2 3.2 0 0 1 0 5.6"/><path d="M17.6 14.4a5.8 5.8 0 0 1 2.8 5.2"/></svg></span><div class="atuacao-card-body"><h3>Assistência técnica</h3><p>Atuação técnica junto ao escritório, com acompanhamento da perícia oficial.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.8" y="5.2" width="14.4" height="14.4" rx="2.4"/><path d="M9 5.2V4.4a1.8 1.8 0 0 1 1.8-1.8h2.4A1.8 1.8 0 0 1 15 4.4v.8"/><path d="M8.8 10.6h6.4M8.8 14.2h4.4"/></svg></span><div class="atuacao-card-body"><h3>Elaboração de quesitos</h3><p>Formulação de quesitos técnicos orientados à discussão médica do caso.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 3.4H7.8A2.4 2.4 0 0 0 5.4 5.8v12.4a2.4 2.4 0 0 0 2.4 2.4h8.4a2.4 2.4 0 0 0 2.4-2.4V8.4l-5.2-5Z"/><path d="M13.2 3.6v5h5"/><path d="M8.8 13.2h6.4M8.8 16.6h4.2"/></svg></span><div class="atuacao-card-body"><h3>Parecer técnico</h3><p>Parecer fundamentado sobre documentação, laudo ou questão médica do processo.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.2"/><path d="m15.4 15.4 4.4 4.4"/></svg></span><div class="atuacao-card-body"><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 12S6.5 5.9 12 5.9 21.2 12 21.2 12 17.5 18.1 12 18.1 2.8 12 2.8 12Z"/><circle cx="12" cy="12" r="2.7"/></svg></span><div class="atuacao-card-body"><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></div></article>
+<article class="atuacao-card"><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 14.2a2.4 2.4 0 0 1-2.4 2.4H8.8L4.4 20.4V6.2a2.4 2.4 0 0 1 2.4-2.4h11.2a2.4 2.4 0 0 1 2.4 2.4v8Z"/><path d="M8.8 8.8h6.4M8.8 12.2h4.2"/></svg></span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article>
+</div>
+</div>
+</section>
+
 <section id="contato" class="section theme-dark">
 <div class="wrap">
 <div class="col" style="margin-left:auto;margin-right:auto">
@@ -384,137 +509,48 @@ CRM 129.885/SP · RQE 72.940
 
 <section id="sobre" class="section theme-light">
 <div class="wrap pair">
-<div class="pair-media portrait">
-<img src="assets/tamira-mesa-ampla.jpg" alt="Dra. Tamira Terao Arakaki, especialista em Medicina Física e Reabilitação.">
+<div class="pair-media portrait pair-media-tagged">
+<img src="assets/tamira-mesa-notebook.jpg" alt="Dra. Tamira Terao Arakaki, especialista em Medicina Física e Reabilitação.">
+<span class="pair-tag g1" aria-hidden="true">Especialista em <b>Fisiatria</b></span>
+<span class="pair-tag g2" aria-hidden="true">Medicina e residência <b>FMUSP</b></span>
+<span class="pair-tag g3" aria-hidden="true">+ de <b>15 anos</b> de clínica</span>
+<span class="pair-tag g4" aria-hidden="true">Pós em <b>Medicina Legal</b></span>
+<span class="pair-tag g5" aria-hidden="true">Perita e <b>assistente técnica</b></span>
 </div>
 <div class="pair-text center center-on-mobile">
 <p class="eyebrow center center-on-mobile">Sobre</p>
 <h2 class="heading center center-on-mobile" style="margin-top:14px;font-size:clamp(24px,2.7vw,38px)">Experiência clínica<br>a serviço da perícia.</h2>
+<p class="lede center center-on-mobile" style="margin-top:14px"><strong style="font-weight:700">Dra. Tamira Terao Arakaki</strong> · Médica fisiatra</p>
+<p class="scope-notice hero-registry-pill about-registry-pill">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="11" r="2"/><path d="M6 16c.4-1.7 1.8-2.3 2.5-2.3s2.1.6 2.5 2.3"/><path d="M14 9.5h4M14 13h4"/></svg>
+CRM 129.885/SP · RQE 72.940
+</p>
 <p class="quote" style="margin-top:22px;text-align:inherit">Fisiatria é a especialidade médica da incapacidade, da lesão e da limitação funcional. É exatamente o objeto da perícia previdenciária, trabalhista e acidentária.</p>
 <div class="prose" style="margin-top:22px;text-align:inherit">
-<p>Antes de examinar processos, foram quinze anos avaliando pessoas: amputações, dor crônica, distúrbios musculoesqueléticos e sequelas neurológicas, no Instituto de Reabilitação Lucy Montoro, no Hospital 9 de Julho e na Diretoria Clínica do Centro de Reabilitação Lucy Montoro de Sorocaba.</p>
-<p>Medicina pela FMUSP. Residência em Fisiatria no Hospital das Clínicas da FMUSP. Título de especialista em Medicina Física e Reabilitação pela Associação Médica Brasileira. Pós-graduação em Medicina Legal e Perícias Médicas.</p>
-<sc-if value="{{ mostrarParagrafo3 }}" hint-placeholder-val="{{ true }}">
-<p>Na função de perita nomeada ou na de assistente técnica, o compromisso é o mesmo: rigor técnico na avaliação funcional. Nenhuma das duas comporta conclusão formada antes do exame.</p>
-</sc-if>
+<p>Formada em Medicina pela <strong>FMUSP</strong>, fez residência em Fisiatria no <strong>Hospital das Clínicas da FMUSP</strong>, tem título de especialista em <strong>Medicina Física e Reabilitação</strong> pela <strong>Associação Médica Brasileira</strong> e pós-graduação em <strong>Medicina Legal e Perícias Médicas</strong>.</p>
+<p>Antes de examinar processos, passou <strong>quinze anos avaliando pessoas</strong>: amputações, dor crônica, distúrbios musculoesqueléticos e sequelas neurológicas, no <strong>Instituto de Reabilitação Lucy Montoro</strong>, no <strong>Hospital 9 de Julho</strong> e na Diretoria Clínica do Centro de Reabilitação Lucy Montoro de Sorocaba. É essa <strong>leitura funcional</strong>, construída no atendimento, que ela leva para cada laudo.</p>
 </div>
 </div>
 </div>
 </section>
 
-<section id="atuacao-outer" class="section stackscroll-outer theme-light" data-lead-vh="40" data-reveal-vh="495" data-hold-vh="105" style="height:740vh;border-top:1px solid var(--line)">
-<div class="stackscroll-inner">
-<div class="stackscroll-content">
-<p class="eyebrow center">Atuação</p>
-<h2 class="heading center" style="margin-top:14px;max-width:18em;margin-left:auto;margin-right:auto">Visão técnica para cada etapa do processo.</h2>
-<p class="lede center" style="margin-top:12px">Perícia previdenciária, trabalhista, acidentária e cível.</p>
-
-<div class="atuacao-stack stackscroll-stack" id="atuacao-stack">
-<div class="stackscroll-item" data-stack-i="0"><article class="atuacao-card"><span class="atuacao-num-badge">01</span><div class="atuacao-card-body"><h3>Perícia previdenciária</h3><p>Avaliação de capacidade laboral em processos previdenciários.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="1"><article class="atuacao-card"><span class="atuacao-num-badge">02</span><div class="atuacao-card-body"><h3>Perícia trabalhista</h3><p>Avaliação técnica em processos que envolvem capacidade para o trabalho.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="2"><article class="atuacao-card"><span class="atuacao-num-badge">03</span><div class="atuacao-card-body"><h3>Perícia acidentária</h3><p>Análise de sequelas e de nexo entre o evento e a condição apresentada.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="3"><article class="atuacao-card"><span class="atuacao-num-badge">04</span><div class="atuacao-card-body"><h3>Perícia cível</h3><p>Avaliação médica em processos com discussão técnica sobre saúde ou capacidade.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="4"><article class="atuacao-card"><span class="atuacao-num-badge">05</span><div class="atuacao-card-body"><h3>Assistência técnica</h3><p>Atuação técnica junto ao escritório, com acompanhamento da perícia oficial.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="5"><article class="atuacao-card"><span class="atuacao-num-badge">06</span><div class="atuacao-card-body"><h3>Elaboração de quesitos</h3><p>Formulação de quesitos técnicos orientados à discussão médica do caso.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="6"><article class="atuacao-card"><span class="atuacao-num-badge">07</span><div class="atuacao-card-body"><h3>Parecer técnico</h3><p>Parecer fundamentado sobre documentação, laudo ou questão médica do processo.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="7"><article class="atuacao-card"><span class="atuacao-num-badge">08</span><div class="atuacao-card-body"><h3>Análise de viabilidade</h3><p>Leitura prévia da documentação médica antes da decisão de seguir com a demanda.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="8"><article class="atuacao-card"><span class="atuacao-num-badge">09</span><div class="atuacao-card-body"><h3>Acompanhamento de perícia oficial</h3><p>Presença no exame, com registro do que foi e do que não foi avaliado.</p></div></article></div>
-<div class="stackscroll-item" data-stack-i="9"><article class="atuacao-card"><span class="atuacao-num-badge">10</span><div class="atuacao-card-body"><h3>Esclarecimentos em audiência</h3><p>Prestação de esclarecimentos técnicos quando solicitado.</p></div></article></div>
-</div>
-
-<p class="stack-hint" id="atuacao-hint" style="max-width:640px;margin-left:auto;margin-right:auto">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-Role para ver mais
-</p>
-
-<p class="scope-notice">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16" r="0.1" fill="currentColor" stroke-width="2.6"/></svg>
-Não atendo casos de erro médico.
-</p>
+<section id="diferenciais" class="section theme-dark" style="scroll-margin-top:79px">
+<div class="wrap">
+<h2 class="heading center" style="margin-top:0">O que muda quando a perícia<br>é feita por uma fisiatra.</h2>
+<div class="dif-stack">
+<article class="dif-card" data-reveal><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.8 12h4l2.4-6.2L13.6 18l2.3-6h5.3"/></svg></span><h3>Fisiatria, não perícia genérica</h3><p>A especialidade médica da <strong>incapacidade e da limitação funcional</strong> é exatamente o que o processo discute. A avaliação parte de quem trabalha com isso na clínica.</p></article>
+<article class="dif-card" data-reveal><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 20.4h17.6"/><rect x="5.4" y="8.6" width="13.2" height="11.8" rx="1.8"/><path d="M12 8.6V4.2M9.9 6.4h4.2"/><path d="M9.8 13.4h4.4M12 11.2v4.4"/></svg></span><h3>Quinze anos antes do primeiro laudo</h3><p>Amputações, dor crônica e sequelas neurológicas avaliadas no <strong>Lucy Montoro</strong> e no <strong>Hospital 9 de Julho</strong>. A leitura funcional vem do consultório.</p></article>
+<article class="dif-card" data-reveal><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><circle cx="12" cy="16.4" r="0.1" stroke-width="2.6"/></svg></span><h3>Escopo declarado</h3><p>Previdenciária, trabalhista, acidentária e cível. <strong>Casos de erro médico não são atendidos</strong>. Isso é dito antes, não depois.</p></article>
+<article class="dif-card" data-reveal><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 3.4H7.8A2.4 2.4 0 0 0 5.4 5.8v12.4a2.4 2.4 0 0 0 2.4 2.4h8.4a2.4 2.4 0 0 0 2.4-2.4V8.4l-5.2-5Z"/><path d="M13.2 3.6v5h5"/><path d="m9.2 14.4 2 2 4-4.3"/></svg></span><h3>Sem conclusão pronta</h3><p>Como <strong>perita nomeada</strong> ou como <strong>assistente técnica</strong>, o exame vem primeiro. Nenhuma das duas funções comporta tese formada antes da avaliação.</p></article>
+<article class="dif-card" data-reveal><span class="atuacao-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.2 3.2 10.4 14"/><path d="M21.2 3.2 14.6 20.8l-3.9-7.3-7.3-3.9 17.8-6.4Z"/></svg></span><h3>Retorno em até 24h úteis</h3><p>A documentação médica é lida <strong>antes</strong> de a demanda ser aceita. Se o caso não se sustenta tecnicamente, você fica sabendo logo.</p></article>
 </div>
 </div>
 </section>
 
-<section class="section atendimento-mobile-photo theme-dark stackscroll-cover">
-<div class="wrap atendimento-mobile-photo-frame">
-<img src="assets/tamira-mesa-notebook.jpg" alt="Dra. Tamira Terao Arakaki, perita médica em Sorocaba.">
-</div>
-</section>
-
-<section id="atendimento-outer" class="section stackscroll-outer stackscroll-cover-desktop theme-dark" data-lead-vh="35" data-reveal-vh="260" data-hold-vh="105" style="height:500vh">
-<div class="stackscroll-inner">
-<div class="stackscroll-content atendimento-grid">
-<div class="atendimento-col">
-<p class="eyebrow center center-on-mobile">Atendimento</p>
-<h2 class="heading center center-on-mobile" style="margin-top:14px">Informações para seu atendimento.</h2>
-
-<div class="atendimento-stack stackscroll-stack" id="atendimento-stack">
-
-<div class="stackscroll-item" data-stack-i="0"><div class="info-row">
-<svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.75"/></svg>
-<div class="info-body">
-<h3>Consultório</h3>
-<p>Av. Rudolf Dafferner, 400<br>Edifício São Paulo, sala 207 · Sorocaba/SP<br>CEP 18085-005</p>
-</div>
-</div></div>
-
-<div class="stackscroll-item" data-stack-i="1"><div class="info-row">
-<svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.8l3.2 1.9"/></svg>
-<div class="info-body">
-<h3>Horários</h3>
-<p>Segunda 14h às 18h<br>Quarta 8h às 14h<br>Sexta 14h às 18h<br>Somente com hora marcada.</p>
-</div>
-</div></div>
-
-<div class="stackscroll-item" data-stack-i="2"><div class="info-row">
-<svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>
-<div class="info-body">
-<h3>Área de atendimento</h3>
-<p>Sorocaba e região, com atendimento presencial mediante agendamento e trabalho documental à distância.</p>
-</div>
-</div></div>
-
-<sc-if value="{{ destacarAcessibilidade }}" hint-placeholder-val="{{ true }}">
-<div class="stackscroll-item" data-stack-i="3"><div class="info-row">
-<svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="5" r="1.75" fill="currentColor" stroke="none"/><path d="M11 8.5h4.5l2 4.5M11 8.5l-.8 6.2a2 2 0 0 0 1.98 2.3H15"/><circle cx="10.5" cy="15.5" r="4.3"/></svg>
-<div class="info-body">
-<h3>Acessibilidade</h3>
-<div class="a11y-box">
-<p>Prédio com elevador</p>
-<p>Entrada e banheiro adaptados para cadeirantes e pessoas com mobilidade reduzida. Estacionamento pago no local.</p>
-</div>
-</div>
-</div></div>
-</sc-if>
-
-<div class="stackscroll-item" data-stack-i="4"><div class="info-row">
-<svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>
-<div class="info-body">
-<h3>Contato</h3>
-<p><a href="mailto:ttaarakaki.pm@gmail.com">ttaarakaki.pm@gmail.com</a><br><a href="tel:+5511985024990">(11) 98502-4990</a></p>
-</div>
-</div></div>
-
-</div>
-
-<p class="stack-hint" id="atendimento-hint" style="max-width:480px;margin-left:auto;margin-right:auto">
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-Role para ver mais
-</p>
-</div>
-
-<div class="stackscroll-photo">
-<img src="assets/tamira-mesa-notebook.jpg" alt="Dra. Tamira Terao Arakaki, perita médica em Sorocaba.">
-</div>
-</div>
-</div>
-</section>
-
-<section id="deixe-contato" class="section theme-light stackscroll-cover" style="border-top:1px solid var(--line)">
+<section id="deixe-contato" class="section theme-light" style="border-top:1px solid var(--line)">
 <div class="wrap">
 <div class="contact-heading">
-<p class="scope-tag-wrap"><span class="scope-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7 8 6 8-6"/></svg>Solicitar análise</span></p>
-<h2 class="heading center center-on-mobile" style="margin-top:14px">Envie seu caso agora</h2>
+<h2 class="heading center center-on-mobile" style="margin-top:0">Envie seu caso agora</h2>
 <p class="lede center center-on-mobile" style="margin-top:14px">Preencha os dados abaixo e retorno em até 24h úteis.</p>
 </div>
 
@@ -565,12 +601,14 @@ Enviar solicitação
 <iframe src="https://www.google.com/maps?q=Av.+Rudolf+Dafferner,+400,+Sorocaba,+SP&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa do consultório da Dra. Tamira"></iframe>
 </div>
 </div>
+
 </div>
 </div>
 </section>
 
-<footer class="site theme-dark px" style="padding-top:var(--gap-section);padding-bottom:clamp(34px,6vw,52px)">
-<div class="col">
+<footer class="site theme-dark px" style="padding-top:clamp(44px,6vw,66px);padding-bottom:clamp(28px,4.5vw,42px)">
+<div class="col footer-grid">
+<div class="footer-brand">
 <div class="footer-mark">
 <span class="mark">TAMIRA</span>
 <span class="mark-sub">Terao Arakaki</span>
@@ -586,6 +624,12 @@ Enviar solicitação
 <a href="https://www.google.com/maps/place/Dra.+Tamira+Terao+Arakaki+%7C+Per%C3%ADcia+M%C3%A9dica+em+Sorocaba/data=!4m2!3m1!1s0x0:0xda5c05a573632b4d?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener" aria-label="Como chegar (Google Maps)">
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.75"/></svg>
 </a>
+</div>
+</div>
+<div class="footer-info" id="atendimento-outer" style="scroll-margin-top:79px">
+<div><h3><svg  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.75"/></svg>Consultório</h3><p>Av. Rudolf Dafferner, 400<br>Edifício São Paulo, sala 207<br>Sorocaba/SP · CEP 18085-005</p></div>
+<div><h3><svg  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v4.8l3.2 1.9"/></svg>Horários</h3><p>Segunda 14h às 18h<br>Quarta 8h às 14h<br>Sexta 14h às 18h<br>Somente com hora marcada.</p></div>
+<div><h3><svg  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/></svg>Área de atendimento</h3><p>Sorocaba e região, com atendimento presencial mediante agendamento e trabalho documental à distância.</p></div>
 </div>
 </div>
 </footer>
@@ -605,6 +649,18 @@ class Component extends DCLogic {
 }
 
 </script>
+<div class="chat-nudge" id="chat-nudge">
+<a class="chat-nudge-link" href="https://wa.me/5511985024990?text=Ol%C3%A1%2C%20Dra.%20Tamira.%20Gostaria%20de%20enviar%20a%20documenta%C3%A7%C3%A3o%20de%20um%20caso%20para%20an%C3%A1lise." target="_blank" rel="noopener">
+<span class="chat-nudge-av" aria-hidden="true"></span>
+<span class="chat-nudge-box">
+<span class="chat-nudge-who">Dra. Tamira · Perita médica</span>
+<span class="chat-nudge-typing" aria-hidden="true"><i></i><i></i><i></i></span>
+<span class="chat-nudge-msgwrap"><span class="chat-nudge-msg">Olá, como posso te ajudar hoje?</span></span>
+</span>
+</a>
+<button type="button" class="chat-nudge-x" aria-label="Fechar">×</button>
+</div>
+
 <script>
 (function(){
   var SHEET_ENDPOINT_URL = "https://n8n-n8n-start.dnjlb7.easypanel.host/webhook/tamira-pagina";
@@ -742,10 +798,68 @@ class Component extends DCLogic {
     });
   }
 
+  function revealTick(){
+    var els = document.querySelectorAll("[data-reveal]:not(.is-in)");
+    if (!els.length) return;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      // sem "&& r.bottom > 0": quem ja passou da tela (reload com scroll restaurado,
+      // link de ancora, rolagem rapida) tambem precisa aparecer, nao ficar invisivel
+      if (r.top < vh * 0.92) els[i].classList.add("is-in");
+    }
+  }
+
+  // throttle por tempo, nao por flag: um rAF que nunca dispara (aba oculta, app em
+  // segundo plano no celular) deixaria a flag presa em true e mataria o reveal de vez
+  var ultimoTick = 0;
+  function onRevealScroll(){
+    var agora = Date.now();
+    if (agora - ultimoTick < 80) return;
+    ultimoTick = agora;
+    revealTick();
+  }
+
+  function initReveal(){
+    if (initReveal.done) { revealTick(); return; }
+    initReveal.done = true;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      var all = document.querySelectorAll("[data-reveal]");
+      for (var i = 0; i < all.length; i++) all[i].classList.add("is-in");
+      return;
+    }
+    window.addEventListener("scroll", onRevealScroll, { passive: true });
+    window.addEventListener("resize", onRevealScroll);
+    window.addEventListener("load", revealTick);
+    window.addEventListener("pageshow", revealTick);
+    document.addEventListener("visibilitychange", function(){ if (!document.hidden) revealTick(); });
+    revealTick();
+  }
+
+  function initChatNudge(){
+    var el = document.getElementById("chat-nudge");
+    if (!el || el.getAttribute("data-nudge-on")) return;
+    el.setAttribute("data-nudge-on", "1");
+    var off = false;
+    try { off = sessionStorage.getItem("tamira-nudge-off") === "1"; } catch (e) {}
+    if (off) { el.parentNode.removeChild(el); return; }
+    setTimeout(function(){
+      el.classList.add("is-on");                                  // entra ja digitando
+      setTimeout(function(){ el.classList.add("is-said"); }, 1900); // manda a mensagem
+    }, 3000);
+    var x = el.querySelector(".chat-nudge-x");
+    if (x) x.addEventListener("click", function(ev){
+      ev.preventDefault();
+      el.classList.remove("is-on");
+      try { sessionStorage.setItem("tamira-nudge-off", "1"); } catch (e) {}
+    });
+  }
+
   function initAll(){
-    initScrollStack({ outer: "atuacao-outer", stack: "atuacao-stack", hint: "atuacao-hint" });
-    initScrollStack({ outer: "atendimento-outer", stack: "atendimento-stack", hint: "atendimento-hint" });
     initForm();
+    initReveal();
+    initChatNudge();
   }
 
   initAll();
@@ -757,5 +871,6 @@ class Component extends DCLogic {
   }, 200);
 })();
 </script>
+<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </body>
 </html>
