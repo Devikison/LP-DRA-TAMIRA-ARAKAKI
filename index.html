@@ -900,6 +900,78 @@ class Component extends DCLogic {
   }, 200);
 })();
 </script>
+<script>
+/* Rolagem suave com inércia (mouse e trackpad). Celular e "reduzir movimento" ficam com a rolagem nativa. */
+(function(){
+  if (window.__smoothScroll) return; window.__smoothScroll = true;
+  var mq = window.matchMedia;
+  if (!mq) return;
+  if (mq("(prefers-reduced-motion: reduce)").matches) return;
+  if (!mq("(hover: hover) and (pointer: fine)").matches) return;
+
+  var html = document.documentElement;
+  var EASE = 0.1;
+  var current = window.scrollY, target = current, raf = null;
+
+  function maxY(){ return Math.max(0, html.scrollHeight - window.innerHeight); }
+  function clamp(v){ return Math.max(0, Math.min(maxY(), v)); }
+  function jump(y){ window.scrollTo({ top: y, left: 0, behavior: "instant" }); }
+
+  function tick(){
+    var d = target - current;
+    if (Math.abs(d) < 0.4){ current = target; jump(current); raf = null; return; }
+    current += d * EASE;
+    jump(current);
+    raf = requestAnimationFrame(tick);
+  }
+  function start(){ if (!raf) raf = requestAnimationFrame(tick); }
+
+  function insideScrollable(el){
+    for (var n = el; n && n !== document.body && n !== html; n = n.parentElement){
+      var oy = getComputedStyle(n).overflowY;
+      if ((oy === "auto" || oy === "scroll") && n.scrollHeight > n.clientHeight + 1) return true;
+    }
+    return false;
+  }
+
+  window.addEventListener("wheel", function(e){
+    if (e.ctrlKey || e.metaKey || e.defaultPrevented) return;
+    if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+    if (insideScrollable(e.target)) return;
+    e.preventDefault();
+    var dy = e.deltaY;
+    if (e.deltaMode === 1) dy *= 32; else if (e.deltaMode === 2) dy *= window.innerHeight;
+    if (!raf){ current = window.scrollY; target = current; }
+    target = clamp(target + dy);
+    start();
+  }, { passive: false });
+
+  /* mantém o estado em dia quando a rolagem vem de outro lugar (teclado, barra lateral) */
+  window.addEventListener("scroll", function(){
+    if (!raf){ current = window.scrollY; target = current; }
+  }, { passive: true });
+
+  /* links internos (#sobre, #contato...) deslizam com a mesma suavidade */
+  document.addEventListener("click", function(e){
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var id = a.getAttribute("href").slice(1);
+    var el = id ? document.getElementById(id) : null;
+    if (!el && id) return;
+    var y = 0;
+    if (el){
+      var margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+      y = el.getBoundingClientRect().top + window.scrollY - margin;
+    }
+    e.preventDefault();
+    if (!raf){ current = window.scrollY; }
+    target = clamp(y);
+    start();
+    try { history.pushState(null, "", id ? "#" + id : window.location.pathname + window.location.search); } catch (err) {}
+  });
+})();
+</script>
 <noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
 </body>
 </html>
