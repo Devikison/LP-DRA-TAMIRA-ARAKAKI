@@ -334,7 +334,10 @@ img{display:block;max-width:100%}
 .form-field label{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
 .form-field input,.form-field select,.form-field textarea{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:13px 16px;transition:border-color .2s,box-shadow .2s;outline:none}
 .form-field textarea{resize:vertical;line-height:1.5}
-.form-field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23B99648' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 16px) 50%;background-size:14px 14px;padding-right:42px}
+.form-field select{-webkit-appearance:none;-moz-appearance:none;appearance:none;display:block;width:100%;padding-right:44px;cursor:pointer;text-overflow:ellipsis}
+.select-wrap{position:relative;display:block;min-width:0}
+.select-wrap::after{content:"";position:absolute;right:20px;top:50%;width:8px;height:8px;border-right:2px solid #B99648;border-bottom:2px solid #B99648;transform:translateY(-70%) rotate(45deg);pointer-events:none;transition:transform .2s}
+.select-wrap:focus-within::after{transform:translateY(-30%) rotate(225deg)}
 .form-field select::-ms-expand{display:none}
 .form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted-2)}
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(215,180,102,.2)}
@@ -594,6 +597,7 @@ CRM 129.885/SP · RQE 72.940
 </div>
 <div class="form-field">
 <label for="contact-servico">Tipo de serviço</label>
+<div class="select-wrap">
 <select id="contact-servico" name="Tipo de Serviço" required>
 <option value="" disabled selected>Selecione...</option>
 <option>Perícia previdenciária</option>
@@ -605,6 +609,7 @@ CRM 129.885/SP · RQE 72.940
 <option>Parecer técnico</option>
 <option>Outros</option>
 </select>
+</div>
 </div>
 <div class="form-field form-field-full">
 <label for="contact-detalhes">Detalhes do caso</label>
